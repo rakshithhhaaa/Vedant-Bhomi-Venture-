@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vedant Bhomi Venture - Local Content Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+    .font-serif { font-family: 'Lora', Georgia, serif; }
+  </style>
+</head>
+<body class="bg-[#FBF9F6] text-[#2A2421] min-h-screen flex flex-col antialiased selection:bg-[#E8C5B4]">
+
+  <!-- Top Header Navigation -->
+  <header class="bg-[#1F1A18] text-white sticky top-0 z-40 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-[#9C4123] flex items-center justify-center font-bold text-white shadow">
+          VB
+        </div>
+        <div>
+          <span class="font-serif font-bold text-base sm:text-lg tracking-tight block">Vedant Bhomi Venture Admin</span>
+          <span class="text-[11px] text-[#C87456] font-semibold tracking-wider uppercase block">VEBCO Local Laptop Tool (127.0.0.1:4000)</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="http://localhost:5173" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-[#DFCCBA] transition-colors">
+          <span>Open Public Site (5173)</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        </a>
+
+        <button onclick="openPublishModal()" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#2D7045] hover:bg-[#235836] text-white font-bold text-xs sm:text-sm shadow-md transition-all cursor-pointer">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+          <span>Publish to GitHub</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="bg-[#2B221E] border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-1 overflow-x-auto scrollbar-none py-1.5">
+        <button onclick="switchTab('catalogue')" id="tab-btn-catalogue" class="tab-btn px-4 py-2 rounded-lg text-xs font-bold transition-all text-white bg-[#9C4123]">
+          Catalogue & Rates (<span id="count-catalogue">0</span>)
+        </button>
+        <button onclick="switchTab('gallery')" id="tab-btn-gallery" class="tab-btn px-4 py-2 rounded-lg text-xs font-bold transition-all text-[#BFB0A7] hover:text-white hover:bg-white/5">
+          Photo Gallery (<span id="count-gallery">0</span>)
+        </button>
+        <button onclick="switchTab('videos')" id="tab-btn-videos" class="tab-btn px-4 py-2 rounded-lg text-xs font-bold transition-all text-[#BFB0A7] hover:text-white hover:bg-white/5">
+          Video Reels (<span id="count-videos">0</span>)
+        </button>
+        <button onclick="switchTab('testimonials')" id="tab-btn-testimonials" class="tab-btn px-4 py-2 rounded-lg text-xs font-bold transition-all text-[#BFB0A7] hover:text-white hover:bg-white/5">
+          Testimonials (<span id="count-testimonials">0</span>)
+        </button>
+        <button onclick="switchTab('settings')" id="tab-btn-settings" class="tab-btn px-4 py-2 rounded-lg text-xs font-bold transition-all text-[#BFB0A7] hover:text-white hover:bg-white/5">
+          Site Settings
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Notification Banner -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 hidden transition-all transform duration-300">
+    <div id="toast-content" class="px-5 py-3.5 rounded-2xl shadow-2xl text-xs sm:text-sm font-bold flex items-center gap-3"></div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+
+    <!-- TAB 1: CATALOGUE -->
+    <section id="tab-catalogue" class="tab-pane space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="font-serif text-2xl font-bold text-[#1F1A18]">Catalogue Models & Rates</h2>
+          <p class="text-xs text-[#5A4A43]">Turnkey packages, pricing per sq ft, and photo slots stored in <code class="bg-[#ECE0D2] px-1.5 py-0.5 rounded font-mono text-[11px]">src/data/catalogue.json</code>.</p>
+        </div>
+        <button onclick="openCatalogueModal()" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#9C4123] hover:bg-[#7F3118] text-white font-bold text-xs shadow-sm">
+          + Add New Model
+        </button>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-[#ECE0D2] shadow-sm overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs sm:text-sm">
+            <thead>
+              <tr class="bg-[#F5EFE7] border-b border-[#ECE0D2] text-[#5A4A43] uppercase text-[11px] font-bold">
+                <th class="py-3 px-4">Order</th>
+                <th class="py-3 px-4">Model Title & Slug</th>
+                <th class="py-3 px-4">Category</th>
+                <th class="py-3 px-4">Rate / Unit</th>
+                <th class="py-3 px-4">Photos</th>
+                <th class="py-3 px-4">Visibility</th>
+                <th class="py-3 px-4 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="catalogue-table-body" class="divide-y divide-[#F5EFE7]"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: GALLERY -->
+    <section id="tab-gallery" class="tab-pane hidden space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="font-serif text-2xl font-bold text-[#1F1A18]">Project Photo Gallery</h2>
+          <p class="text-xs text-[#5A4A43]">Upload real site photos. Auto-converted to WebP (&lt;1600px) into <code class="bg-[#ECE0D2] px-1.5 py-0.5 rounded font-mono text-[11px]">public/images/</code>.</p>
+        </div>
+        <button onclick="openGalleryUploadModal()" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#2D7045] hover:bg-[#235836] text-white font-bold text-xs shadow-sm">
+          + Upload Photo
+        </button>
+      </div>
+
+      <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+      <div id="gallery-empty" class="hidden bg-white rounded-3xl p-12 border border-[#ECE0D2] text-center space-y-3">
+        <p class="text-sm text-[#5A4A43]">No photos in gallery yet. The public site cleanly hides empty sections until you upload real photos.</p>
+      </div>
+    </section>
+
+    <!-- TAB 3: VIDEOS -->
+    <section id="tab-videos" class="tab-pane hidden space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="font-serif text-2xl font-bold text-[#1F1A18]">YouTube Video Reels</h2>
+          <p class="text-xs text-[#5A4A43]">13+ construction reels embedded via lazy lite-player in <code class="bg-[#ECE0D2] px-1.5 py-0.5 rounded font-mono text-[11px]">src/data/videos.json</code>.</p>
+        </div>
+        <button onclick="openVideoModal()" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#9C4123] hover:bg-[#7F3118] text-white font-bold text-xs shadow-sm">
+          + Add Video
+        </button>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-[#ECE0D2] shadow-sm overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs sm:text-sm">
+            <thead>
+              <tr class="bg-[#F5EFE7] border-b border-[#ECE0D2] text-[#5A4A43] uppercase text-[11px] font-bold">
+                <th class="py-3 px-4">Order</th>
+                <th class="py-3 px-4">Thumbnail</th>
+                <th class="py-3 px-4">Title & Description</th>
+                <th class="py-3 px-4">YouTube ID</th>
+                <th class="py-3 px-4">Status</th>
+                <th class="py-3 px-4 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="videos-table-body" class="divide-y divide-[#F5EFE7]"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: TESTIMONIALS -->
+    <section id="tab-testimonials" class="tab-pane hidden space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="font-serif text-2xl font-bold text-[#1F1A18]">Client Testimonials</h2>
+          <p class="text-xs text-[#5A4A43]">Stored in <code class="bg-[#ECE0D2] px-1.5 py-0.5 rounded font-mono text-[11px]">src/data/testimonials.json</code>. (Section stays hidden on public site if empty).</p>
+        </div>
+        <button onclick="openTestimonialModal()" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#9C4123] hover:bg-[#7F3118] text-white font-bold text-xs shadow-sm">
+          + Add Testimonial
+        </button>
+      </div>
+
+      <div id="testimonials-list" class="space-y-4"></div>
+      <div id="testimonials-empty" class="hidden bg-white rounded-3xl p-12 border border-[#ECE0D2] text-center space-y-2">
+        <p class="text-sm font-bold text-[#1F1A18]">No Testimonials Added Yet</p>
+        <p class="text-xs text-[#5A4A43]">Per zero-fake-content policy, add genuine client reviews whenever received.</p>
+      </div>
+    </section>
+
+    <!-- TAB 5: SETTINGS -->
+    <section id="tab-settings" class="tab-pane hidden space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="font-serif text-2xl font-bold text-[#1F1A18]">Global Site Settings</h2>
+          <p class="text-xs text-[#5A4A43]">Edits save directly to <code class="bg-[#ECE0D2] px-1.5 py-0.5 rounded font-mono text-[11px]">src/data/settings.json</code>.</p>
+        </div>
+        <button onclick="saveSiteSettings()" class="inline-flex items-center gap-1.5 px-6 py-2.5 rounded-xl bg-[#9C4123] hover:bg-[#7F3118] text-white font-bold text-xs sm:text-sm shadow-sm">
+          Save Settings
+        </button>
+      </div>
+
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-[#ECE0D2] shadow-sm space-y-6 text-xs sm:text-sm">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-[#2A2421] uppercase tracking-wider mb-1">Company Name</label>
+            <input type="text" id="set-company_name" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA] text-[#1F1A18] focus:ring-2 focus:ring-[#9C4123] focus:bg-white" />
+          </div>
+          <div>
+            <label class="block font-bold text-[#2A2421] uppercase tracking-wider mb-1">Brand Name / Also Known As</label>
+            <input type="text" id="set-brand_name" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA] text-[#1F1A18] focus:ring-2 focus:ring-[#9C4123] focus:bg-white" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-[#2A2421] uppercase tracking-wider mb-1">Tagline</label>
+            <input type="text" id="set-tagline" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA] text-[#1F1A18] focus:ring-2 focus:ring-[#9C4123] focus:bg-white" />
+          </div>
+          <div>
+            <label class="block font-bold text-[#2A2421] uppercase tracking-wider mb-1">Service Areas (comma-separated)</label>
+            <input type="text" id="set-service_areas" placeholder="Bangalore, Karnataka, Tamil Nadu, Andhra Pradesh" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA] text-[#1F1A18] focus:ring-2 focus:ring-[#9C4123] focus:bg-white" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-[#2A2421] uppercase tracking-wider mb-1">Phone Number</label>
+            <input type="text" id="set-phone" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA] text-[#1F1A18] focus:ring-2 focus:ring-[#9C4123] focus:bg-white" />
+          </div>
+          <div>
+            <label class="block font-bold text-[#2A2421] uppercase tracking-wider mb-1">WhatsApp Number</label>
+            <input type="text" id="set-whatsapp_number" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA] text-[#1F1A18] focus:ring-2 focus:ring-[#9C4123] focus:bg-white" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-[#2A2421] uppercase tracking-wider mb-1">Default WhatsApp Message Prefix</label>
+          <input type="text" id="set-whatsapp_message" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA] text-[#1F1A18] focus:ring-2 focus:ring-[#9C4123] focus:bg-white" />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-[#2A2421] uppercase tracking-wider mb-1">Primary Email</label>
+            <input type="email" id="set-email_primary" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA] text-[#1F1A18] focus:ring-2 focus:ring-[#9C4123] focus:bg-white" />
+          </div>
+          <div>
+            <label class="block font-bold text-[#2A2421] uppercase tracking-wider mb-1">Secondary Email</label>
+            <input type="email" id="set-email_secondary" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA] text-[#1F1A18] focus:ring-2 focus:ring-[#9C4123] focus:bg-white" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="sm:col-span-2">
+            <label class="block font-bold text-[#2A2421] uppercase tracking-wider mb-1">Physical Address / Head Office</label>
+            <input type="text" id="set-address" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA] text-[#1F1A18] focus:ring-2 focus:ring-[#9C4123] focus:bg-white" />
+          </div>
+          <div>
+            <label class="block font-bold text-[#2A2421] uppercase tracking-wider mb-1">Working Hours</label>
+            <input type="text" id="set-hours" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA] text-[#1F1A18] focus:ring-2 focus:ring-[#9C4123] focus:bg-white" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-[#2A2421] uppercase tracking-wider mb-1">YouTube Channel URL</label>
+            <input type="text" id="set-youtube_url" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA] font-mono text-xs text-[#1F1A18] focus:ring-2 focus:ring-[#9C4123] focus:bg-white" />
+          </div>
+          <div>
+            <label class="block font-bold text-[#2A2421] uppercase tracking-wider mb-1">WhatsApp Catalogue URL</label>
+            <input type="text" id="set-whatsapp_catalogue_url" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA] font-mono text-xs text-[#1F1A18] focus:ring-2 focus:ring-[#9C4123] focus:bg-white" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-[#2A2421] uppercase tracking-wider mb-1">Home Hero Headline</label>
+          <input type="text" id="set-hero_headline" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA] text-[#1F1A18] focus:ring-2 focus:ring-[#9C4123] focus:bg-white" />
+        </div>
+
+        <div>
+          <label class="block font-bold text-[#2A2421] uppercase tracking-wider mb-1">Home Hero Subtext</label>
+          <textarea rows="2" id="set-hero_subtext" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA] text-[#1F1A18] focus:ring-2 focus:ring-[#9C4123] focus:bg-white"></textarea>
+        </div>
+
+        <div>
+          <label class="block font-bold text-[#2A2421] uppercase tracking-wider mb-1">About Narrative</label>
+          <textarea rows="4" id="set-about_story" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA] text-[#1F1A18] focus:ring-2 focus:ring-[#9C4123] focus:bg-white"></textarea>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL: CATALOGUE ITEM EDIT -->
+  <div id="modal-catalogue" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 border border-[#ECE0D2] shadow-2xl space-y-4 my-8">
+      <div class="flex items-center justify-between border-b border-[#F5EFE7] pb-3">
+        <h3 id="modal-cat-title" class="font-serif text-lg font-bold">Edit Model</h3>
+        <button onclick="closeModal('modal-catalogue')" class="p-1 rounded-full hover:bg-gray-100 text-gray-500">✕</button>
+      </div>
+      <form onsubmit="saveCatalogueItem(event)" class="space-y-4 text-xs sm:text-sm">
+        <input type="hidden" id="cat-id" />
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-[#2A2421] mb-1">Title *</label>
+            <input type="text" id="cat-title" required class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA]" />
+          </div>
+          <div>
+            <label class="block font-bold text-[#2A2421] mb-1">Category *</label>
+            <select id="cat-category" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA]">
+              <option value="Residential House">Residential House</option>
+              <option value="Villa & Bungalow">Villa & Bungalow</option>
+              <option value="Resorts & Cottages">Resorts & Cottages</option>
+              <option value="Traditional Courtyard">Traditional Courtyard</option>
+              <option value="Farmhouse">Farmhouse</option>
+              <option value="Commercial Building">Commercial Building</option>
+              <option value="Academic Building">Academic Building</option>
+              <option value="Raw Materials">Raw Materials</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label class="block font-bold text-[#2A2421] mb-1">Price (₹) (Empty = Contact)</label>
+            <input type="number" id="cat-price" placeholder="2750" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA]" />
+          </div>
+          <div>
+            <label class="block font-bold text-[#2A2421] mb-1">Price Unit</label>
+            <input type="text" id="cat-unit" placeholder="per sq ft" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA]" />
+          </div>
+          <div>
+            <label class="block font-bold text-[#2A2421] mb-1">Sort Order</label>
+            <input type="number" id="cat-order" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA]" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-[#2A2421] mb-1">Slug</label>
+          <input type="text" id="cat-slug" placeholder="cseb-house" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA] font-mono text-xs" />
+        </div>
+
+        <div>
+          <label class="block font-bold text-[#2A2421] mb-1">Description</label>
+          <textarea rows="3" id="cat-desc" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA]"></textarea>
+        </div>
+
+        <div class="flex items-center gap-6 pt-2">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" id="cat-visible" class="w-4 h-4 text-[#9C4123]" />
+            <span class="font-bold">Visible on Website</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" id="cat-featured" class="w-4 h-4 text-[#9C4123]" />
+            <span class="font-bold">Feature on Home</span>
+          </label>
+        </div>
+
+        <div class="pt-4 border-t border-[#F5EFE7] flex justify-end gap-2">
+          <button type="button" onclick="closeModal('modal-catalogue')" class="px-4 py-2 rounded-xl bg-[#F5EFE7] font-bold">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-[#9C4123] text-white font-bold">Save Model</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: CATALOGUE IMAGES -->
+  <div id="modal-cat-images" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 border border-[#ECE0D2] shadow-2xl space-y-5 my-8">
+      <div class="flex items-center justify-between border-b border-[#F5EFE7] pb-3">
+        <h3 id="modal-cat-images-title" class="font-serif text-lg font-bold">Model Photos</h3>
+        <button onclick="closeModal('modal-cat-images')" class="p-1 rounded-full hover:bg-gray-100 text-gray-500">✕</button>
+      </div>
+
+      <div class="p-6 rounded-2xl border-2 border-dashed border-[#DFCCBA] bg-[#FBF9F6] text-center space-y-2">
+        <p class="font-bold text-sm text-[#1F1A18]">Upload Real Project Photo</p>
+        <p class="text-xs text-[#5A4A43]">Resized and compressed directly to WebP in public/images/</p>
+        <label class="inline-block px-4 py-2 rounded-xl bg-[#9C4123] hover:bg-[#7F3118] text-white font-bold text-xs cursor-pointer shadow-sm">
+          Select Photo
+          <input type="file" accept="image/*" onchange="uploadCatalogueImage(event)" class="hidden" />
+        </label>
+      </div>
+
+      <div id="cat-images-list" class="grid grid-cols-3 gap-3"></div>
+
+      <div class="text-right pt-3">
+        <button onclick="closeModal('modal-cat-images')" class="px-5 py-2 rounded-xl bg-[#1F1A18] text-white font-bold text-xs">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: GALLERY UPLOAD -->
+  <div id="modal-gallery" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 border border-[#ECE0D2] shadow-2xl space-y-4 my-8">
+      <div class="flex items-center justify-between border-b border-[#F5EFE7] pb-3">
+        <h3 class="font-serif text-lg font-bold">Upload Gallery Photo</h3>
+        <button onclick="closeModal('modal-gallery')" class="p-1 rounded-full hover:bg-gray-100 text-gray-500">✕</button>
+      </div>
+      <div class="space-y-4 text-xs sm:text-sm">
+        <div>
+          <label class="block font-bold text-[#2A2421] mb-1">Category</label>
+          <select id="gal-category" class="w-full px-3.5 py-2 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA]">
+            <option value="Residential">Residential House</option>
+            <option value="Resort">Resorts & Cottages</option>
+            <option value="Traditional">Traditional Courtyard</option>
+            <option value="Commercial">Commercial Building</option>
+            <option value="Farmhouse">Farmhouse</option>
+            <option value="Academic">Academic Building</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-bold text-[#2A2421] mb-1">Caption</label>
+          <input type="text" id="gal-caption" placeholder="Hosur Courtyard Villa" class="w-full px-3.5 py-2 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA]" />
+        </div>
+        <div class="p-6 rounded-2xl border-2 border-dashed border-[#DFCCBA] bg-[#FBF9F6] text-center space-y-2">
+          <p class="font-bold text-xs">Choose Real Site Image</p>
+          <label class="inline-block px-4 py-2 rounded-xl bg-[#2D7045] hover:bg-[#235836] text-white font-bold text-xs cursor-pointer">
+            Select & Upload
+            <input type="file" accept="image/*" onchange="uploadGalleryPhoto(event)" class="hidden" />
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: VIDEO EDIT -->
+  <div id="modal-video" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 border border-[#ECE0D2] shadow-2xl space-y-4 my-8">
+      <div class="flex items-center justify-between border-b border-[#F5EFE7] pb-3">
+        <h3 id="modal-vid-title" class="font-serif text-lg font-bold">Video Reel</h3>
+        <button onclick="closeModal('modal-video')" class="p-1 rounded-full hover:bg-gray-100 text-gray-500">✕</button>
+      </div>
+      <form onsubmit="saveVideoItem(event)" class="space-y-4 text-xs sm:text-sm">
+        <input type="hidden" id="vid-id" />
+        <div>
+          <label class="block font-bold text-[#2A2421] mb-1">Title *</label>
+          <input type="text" id="vid-title" required class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA]" />
+        </div>
+        <div>
+          <label class="block font-bold text-[#2A2421] mb-1">YouTube URL or ID *</label>
+          <input type="text" id="vid-youtube" required placeholder="https://www.youtube.com/watch?v=... or ID" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA] font-mono text-xs" />
+        </div>
+        <div>
+          <label class="block font-bold text-[#2A2421] mb-1">Description</label>
+          <textarea rows="2" id="vid-desc" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA]"></textarea>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-[#2A2421] mb-1">Sort Order</label>
+            <input type="number" id="vid-order" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA]" />
+          </div>
+          <div class="flex items-center pt-5">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="vid-visible" class="w-4 h-4 text-[#9C4123]" />
+              <span class="font-bold">Visible on Site</span>
+            </label>
+          </div>
+        </div>
+        <div class="pt-4 border-t border-[#F5EFE7] flex justify-end gap-2">
+          <button type="button" onclick="closeModal('modal-video')" class="px-4 py-2 rounded-xl bg-[#F5EFE7] font-bold">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-[#9C4123] text-white font-bold">Save Video</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: TESTIMONIAL EDIT -->
+  <div id="modal-testimonial" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 border border-[#ECE0D2] shadow-2xl space-y-4 my-8">
+      <div class="flex items-center justify-between border-b border-[#F5EFE7] pb-3">
+        <h3 id="modal-test-title" class="font-serif text-lg font-bold">Testimonial</h3>
+        <button onclick="closeModal('modal-testimonial')" class="p-1 rounded-full hover:bg-gray-100 text-gray-500">✕</button>
+      </div>
+      <form onsubmit="saveTestimonialItem(event)" class="space-y-4 text-xs sm:text-sm">
+        <input type="hidden" id="test-id" />
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-[#2A2421] mb-1">Client Name *</label>
+            <input type="text" id="test-name" required class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA]" />
+          </div>
+          <div>
+            <label class="block font-bold text-[#2A2421] mb-1">Project / Location</label>
+            <input type="text" id="test-location" placeholder="Hosur Courtyard Villa" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA]" />
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-[#2A2421] mb-1">Rating</label>
+            <select id="test-rating" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA]">
+              <option value="5">⭐⭐⭐⭐⭐ (5 Stars)</option>
+              <option value="4">⭐⭐⭐⭐ (4 Stars)</option>
+              <option value="3">⭐⭐⭐ (3 Stars)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-[#2A2421] mb-1">Sort Order</label>
+            <input type="number" id="test-order" class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA]" />
+          </div>
+        </div>
+        <div>
+          <label class="block font-bold text-[#2A2421] mb-1">Client Review Quote *</label>
+          <textarea rows="3" id="test-quote" required class="w-full px-3.5 py-2.5 rounded-xl bg-[#FBF9F6] border border-[#DFCCBA]"></textarea>
+        </div>
+        <div class="flex items-center pt-2">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" id="test-visible" class="w-4 h-4 text-[#9C4123]" />
+            <span class="font-bold">Visible on Website</span>
+          </label>
+        </div>
+        <div class="pt-4 border-t border-[#F5EFE7] flex justify-end gap-2">
+          <button type="button" onclick="closeModal('modal-testimonial')" class="px-4 py-2 rounded-xl bg-[#F5EFE7] font-bold">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-[#9C4123] text-white font-bold">Save Review</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: CONFIRM PUBLISH -->
+  <div id="modal-publish" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 border border-[#ECE0D2] shadow-2xl space-y-5 my-8">
+      <div class="flex items-center justify-between border-b border-[#F5EFE7] pb-3">
+        <h3 class="font-serif text-lg font-bold text-[#1F1A18]">Publish Changes to GitHub</h3>
+        <button onclick="closeModal('modal-publish')" class="p-1 rounded-full hover:bg-gray-100 text-gray-500">✕</button>
+      </div>
+
+      <div class="space-y-3 text-xs sm:text-sm text-[#5A4A43]">
+        <p>This will commit all your JSON changes and uploaded WebP images in Git and push to your <code class="bg-[#ECE0D2] px-1 rounded font-bold">origin main</code> branch.</p>
+        <p>GitHub Actions will automatically build and publish the live site on GitHub Pages in ~1-2 minutes.</p>
+      </div>
+
+      <div id="publish-error-box" class="hidden p-3.5 rounded-2xl bg-red-50 border border-red-200 text-xs font-semibold text-red-900 leading-relaxed"></div>
+
+      <div class="pt-4 border-t border-[#F5EFE7] flex justify-end gap-2">
+        <button id="btn-cancel-publish" type="button" onclick="closeModal('modal-publish')" class="px-4 py-2.5 rounded-xl bg-[#F5EFE7] font-bold text-xs">Cancel</button>
+        <button id="btn-confirm-publish" type="button" onclick="executePublish()" class="px-5 py-2.5 rounded-xl bg-[#2D7045] hover:bg-[#235836] text-white font-bold text-xs flex items-center gap-2">
+          <span>Confirm & Push</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let appData = {
+      settings: {},
+      catalogue: [],
+      videos: [],
+      gallery: [],
+      testimonials: []
+    };
+    let currentCatImageItem = null;
+
+    // Helper: Extract YouTube ID
+    function extractYouTubeId(urlOrId) {
+      if (!urlOrId) return '';
+      const trimmed = urlOrId.trim();
+      if (/^[a-zA-Z0-9_-]{11}$/.test(trimmed)) return trimmed;
+      const match = trimmed.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/);
+      return match ? match[1] : trimmed;
+    }
+
+    function showToast(message, isError = false) {
+      const toast = document.getElementById('toast');
+      const content = document.getElementById('toast-content');
+      content.className = `px-5 py-3.5 rounded-2xl shadow-2xl text-xs sm:text-sm font-bold flex items-center gap-3 ${
+        isError ? 'bg-red-900 text-white border border-red-700' : 'bg-[#1F1A18] text-white border border-[#3E322D]'
+      }`;
+      content.innerHTML = `<span>${message}</span>`;
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 4000);
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+      document.getElementById(id).classList.remove('flex');
+    }
+
+    function openModal(id) {
+      document.getElementById(id).classList.remove('hidden');
+      document.getElementById(id).classList.add('flex');
+    }
+
+    // Tab Switching
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.className = 'tab-btn px-4 py-2 rounded-lg text-xs font-bold transition-all text-[#BFB0A7] hover:text-white hover:bg-white/5';
+      });
+      document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+      document.getElementById(`tab-btn-${tabId}`).className = 'tab-btn px-4 py-2 rounded-lg text-xs font-bold transition-all text-white bg-[#9C4123]';
+    }
+
+    // Load initial data
+    async function loadAllData() {
+      try {
+        const res = await fetch('/api/data');
+        const json = await res.json();
+        if (json.success) {
+          appData = json.data;
+          renderAll();
+        }
+      } catch (err) {
+        showToast('Failed to connect to local admin server', true);
+      }
+    }
+
+    function renderAll() {
+      renderCatalogue();
+      renderGallery();
+      renderVideos();
+      renderTestimonials();
+      renderSettings();
+      document.getElementById('count-catalogue').textContent = appData.catalogue.length;
+      document.getElementById('count-gallery').textContent = appData.gallery.length;
+      document.getElementById('count-videos').textContent = appData.videos.length;
+      document.getElementById('count-testimonials').textContent = appData.testimonials.length;
+    }
+
+    // 1. Render Catalogue
+    function renderCatalogue() {
+      const tbody = document.getElementById('catalogue-table-body');
+      tbody.innerHTML = '';
+      appData.catalogue.sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0));
+
+      appData.catalogue.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-[#FBF9F6]';
+        const imgCount = (item.images || []).length;
+        const priceStr = item.price ? `₹${item.price} / ${item.price_unit || 'sq ft'}` : 'Contact for price';
+
+        tr.innerHTML = `
+          <td class="py-3 px-4 font-bold text-[#5A4A43]">#${item.sort_order || 0}</td>
+          <td class="py-3 px-4">
+            <span class="font-bold text-[#1F1A18] block">${item.title}</span>
+            <span class="text-[11px] text-[#9C887E] font-mono block">/${item.slug}</span>
+          </td>
+          <td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-[#ECE0D2] text-xs font-semibold">${item.category}</span></td>
+          <td class="py-3 px-4 font-bold text-[#9C4123]">${priceStr}</td>
+          <td class="py-3 px-4">
+            <button onclick="openCatImagesModal('${item.id}')" class="px-2.5 py-1 rounded-lg border text-xs font-semibold ${imgCount > 0 ? 'bg-[#F0F7F3] text-[#2D7045] border-[#BDDEC8]' : 'bg-[#F5EFE7] text-[#5A4A43] border-[#DFCCBA]'}">
+              📷 ${imgCount} Photos
+            </button>
+          </td>
+          <td class="py-3 px-4">
+            <span class="text-[11px] font-bold px-2 py-0.5 rounded ${item.visible ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-500'}">
+              ${item.visible ? 'Visible' : 'Hidden'}
+            </span>
+            ${item.is_featured ? '<span class="text-[10px] font-bold bg-amber-100 text-amber-900 px-1.5 py-0.5 rounded ml-1">★ Featured</span>' : ''}
+          </td>
+          <td class="py-3 px-4 text-right">
+            <button onclick="editCatalogueItem('${item.id}')" class="px-2 py-1 bg-[#ECE0D2] rounded hover:bg-[#DFCCBA] text-xs font-bold mr-1">Edit</button>
+            <button onclick="deleteCatalogueItem('${item.id}')" class="px-2 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200 text-xs font-bold">Delete</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function openCatalogueModal() {
+      document.getElementById('modal-cat-title').textContent = 'Add New Model';
+      document.getElementById('cat-id').value = '';
+      document.getElementById('cat-title').value = '';
+      document.getElementById('cat-slug').value = '';
+      document.getElementById('cat-category').value = 'Residential House';
+      document.getElementById('cat-price').value = '2000';
+      document.getElementById('cat-unit').value = 'per sq ft';
+      document.getElementById('cat-order').value = appData.catalogue.length + 1;
+      document.getElementById('cat-desc').value = '';
+      document.getElementById('cat-visible').checked = true;
+      document.getElementById('cat-featured').checked = false;
+      openModal('modal-catalogue');
+    }
+
+    function editCatalogueItem(id) {
+      const item = appData.catalogue.find(i => i.id === id);
+      if (!item) return;
+      document.getElementById('modal-cat-title').textContent = 'Edit Model';
+      document.getElementById('cat-id').value = item.id;
+      document.getElementById('cat-title').value = item.title;
+      document.getElementById('cat-slug').value = item.slug;
+      document.getElementById('cat-category').value = item.category || 'Residential House';
+      document.getElementById('cat-price').value = item.price ?? '';
+      document.getElementById('cat-unit').value = item.price_unit || 'per sq ft';
+      document.getElementById('cat-order').value = item.sort_order || 0;
+      document.getElementById('cat-desc').value = item.description || '';
+      document.getElementById('cat-visible').checked = Boolean(item.visible);
+      document.getElementById('cat-featured').checked = Boolean(item.is_featured);
+      openModal('modal-catalogue');
+    }
+
+    async function saveCatalogueItem(e) {
+      e.preventDefault();
+      const id = document.getElementById('cat-id').value;
+      const title = document.getElementById('cat-title').value.trim();
+      const slug = document.getElementById('cat-slug').value.trim() || title.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-');
+      const category = document.getElementById('cat-category').value;
+      const priceVal = document.getElementById('cat-price').value;
+      const price = priceVal !== '' ? Number(priceVal) : null;
+      const price_unit = document.getElementById('cat-unit').value.trim() || 'per sq ft';
+      const sort_order = Number(document.getElementById('cat-order').value) || 0;
+      const description = document.getElementById('cat-desc').value.trim();
+      const visible = document.getElementById('cat-visible').checked;
+      const is_featured = document.getElementById('cat-featured').checked;
+
+      if (id) {
+        const idx = appData.catalogue.findIndex(i => i.id === id);
+        if (idx !== -1) {
+          appData.catalogue[idx] = {
+            ...appData.catalogue[idx],
+            title, slug, category, price, price_unit, sort_order, description, visible, is_featured
+          };
+        }
+      } else {
+        appData.catalogue.push({
+          id: `item-${Date.now()}`,
+          title, slug, category, price, price_unit, sort_order, description, visible, is_featured,
+          images: []
+        });
+      }
+
+      await saveSection('catalogue', appData.catalogue);
+      closeModal('modal-catalogue');
+      renderCatalogue();
+      showToast('Catalogue updated!');
+    }
+
+    async function deleteCatalogueItem(id) {
+      if (!confirm('Are you sure you want to delete this catalogue model?')) return;
+      appData.catalogue = appData.catalogue.filter(i => i.id !== id);
+      await saveSection('catalogue', appData.catalogue);
+      renderCatalogue();
+      showToast('Model deleted.');
+    }
+
+    // Catalogue Multi-Image Manager
+    function openCatImagesModal(id) {
+      const item = appData.catalogue.find(i => i.id === id);
+      if (!item) return;
+      currentCatImageItem = item;
+      document.getElementById('modal-cat-images-title').textContent = `Photos for "${item.title}"`;
+      renderCatImagesList();
+      openModal('modal-cat-images');
+    }
+
+    function renderCatImagesList() {
+      const container = document.getElementById('cat-images-list');
+      container.innerHTML = '';
+      const images = currentCatImageItem.images || [];
+
+      if (images.length === 0) {
+        container.innerHTML = '<div class="col-span-3 text-center text-xs text-[#9C887E] py-4">No real photos uploaded yet for this model.</div>';
+        return;
+      }
+
+      images.forEach((img, idx) => {
+        const div = document.createElement('div');
+        div.className = 'relative rounded-xl overflow-hidden border border-[#DFCCBA] aspect-square bg-[#F5EFE7] group';
+        div.innerHTML = `
+          <img src="/${img.image_url}" class="w-full h-full object-cover" />
+          <span class="absolute top-1 left-1 bg-black/70 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">#${idx + 1} ${idx === 0 ? '(Cover)' : ''}</span>
+          <button onclick="deleteCatalogueImage('${img.id}')" class="absolute top-1 right-1 p-1 bg-red-600 text-white rounded text-[11px] opacity-0 group-hover:opacity-100 transition-opacity">✕</button>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    async function uploadCatalogueImage(e) {
+      const file = e.target.files[0];
+      if (!file || !currentCatImageItem) return;
+
+      const fd = new FormData();
+      fd.append('image', file);
+
+      try {
+        const res = await fetch('/api/upload', { method: 'POST', body: fd });
+        const json = await res.json();
+        if (json.success) {
+          if (!currentCatImageItem.images) currentCatImageItem.images = [];
+          currentCatImageItem.images.push({
+            id: `img-${Date.now()}`,
+            image_url: json.url,
+            sort_order: currentCatImageItem.images.length + 1
+          });
+          await saveSection('catalogue', appData.catalogue);
+          renderCatImagesList();
+          renderCatalogue();
+          showToast('Image uploaded and converted to WebP!');
+        } else {
+          showToast(json.error, true);
+        }
+      } catch (err) {
+        showToast('Upload failed', true);
+      }
+      e.target.value = '';
+    }
+
+    async function deleteCatalogueImage(imgId) {
+      if (!currentCatImageItem) return;
+      currentCatImageItem.images = (currentCatImageItem.images || []).filter(i => i.id !== imgId);
+      await saveSection('catalogue', appData.catalogue);
+      renderCatImagesList();
+      renderCatalogue();
+      showToast('Image removed.');
+    }
+
+    // 2. Render Gallery
+    function renderGallery() {
+      const grid = document.getElementById('gallery-grid');
+      const empty = document.getElementById('gallery-empty');
+      grid.innerHTML = '';
+
+      if (appData.gallery.length === 0) {
+        empty.classList.remove('hidden');
+        return;
+      }
+      empty.classList.add('hidden');
+
+      appData.gallery.forEach(img => {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-2xl overflow-hidden border border-[#ECE0D2] shadow-sm flex flex-col justify-between group';
+        card.innerHTML = `
+          <div class="relative aspect-square bg-[#F5EFE7]">
+            <img src="/${img.image_url}" class="w-full h-full object-cover" />
+            <span class="absolute top-2 left-2 text-[10px] font-bold px-2 py-0.5 rounded bg-black/70 text-white">${img.category}</span>
+            <button onclick="deleteGalleryPhoto('${img.id}')" class="absolute top-2 right-2 p-1.5 bg-red-600 text-white rounded-lg text-xs opacity-0 group-hover:opacity-100 transition-opacity">✕</button>
+          </div>
+          <div class="p-3">
+            <p class="text-xs font-semibold text-[#1F1A18] line-clamp-1">${img.caption || 'No caption'}</p>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function openGalleryUploadModal() {
+      document.getElementById('gal-caption').value = '';
+      openModal('modal-gallery');
+    }
+
+    async function uploadGalleryPhoto(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const fd = new FormData();
+      fd.append('image', file);
+
+      try {
+        const res = await fetch('/api/upload', { method: 'POST', body: fd });
+        const json = await res.json();
+        if (json.success) {
+          appData.gallery.push({
+            id: `gal-${Date.now()}`,
+            image_url: json.url,
+            category: document.getElementById('gal-category').value,
+            caption: document.getElementById('gal-caption').value.trim() || undefined,
+            visible: true,
+            sort_order: appData.gallery.length + 1
+          });
+          await saveSection('gallery', appData.gallery);
+          closeModal('modal-gallery');
+          renderGallery();
+          showToast('Photo added to gallery!');
+        } else {
+          showToast(json.error, true);
+        }
+      } catch (err) {
+        showToast('Upload error', true);
+      }
+      e.target.value = '';
+    }
+
+    async function deleteGalleryPhoto(id) {
+      if (!confirm('Delete this photo from gallery?')) return;
+      appData.gallery = appData.gallery.filter(g => g.id !== id);
+      await saveSection('gallery', appData.gallery);
+      renderGallery();
+      showToast('Photo removed.');
+    }
+
+    // 3. Render Videos
+    function renderVideos() {
+      const tbody = document.getElementById('videos-table-body');
+      tbody.innerHTML = '';
+      appData.videos.sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0));
+
+      appData.videos.forEach(vid => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-[#FBF9F6]';
+        tr.innerHTML = `
+          <td class="py-3 px-4 font-bold text-[#5A4A43]">#${vid.sort_order || 0}</td>
+          <td class="py-3 px-4 w-24">
+            <img src="https://img.youtube.com/vi/${vid.youtube_id}/hqdefault.jpg" class="w-20 h-12 object-cover rounded-lg" />
+          </td>
+          <td class="py-3 px-4 max-w-xs">
+            <span class="font-bold text-[#1F1A18] block">${vid.title}</span>
+            <span class="text-xs text-[#5A4A43] line-clamp-1">${vid.description || ''}</span>
+          </td>
+          <td class="py-3 px-4 font-mono text-xs text-red-600 font-bold">${vid.youtube_id}</td>
+          <td class="py-3 px-4">
+            <span class="text-[11px] font-bold px-2 py-0.5 rounded ${vid.visible ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-500'}">
+              ${vid.visible ? 'Visible' : 'Hidden'}
+            </span>
+          </td>
+          <td class="py-3 px-4 text-right">
+            <button onclick="editVideoItem('${vid.id}')" class="px-2 py-1 bg-[#ECE0D2] rounded hover:bg-[#DFCCBA] text-xs font-bold mr-1">Edit</button>
+            <button onclick="deleteVideoItem('${vid.id}')" class="px-2 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200 text-xs font-bold">Delete</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function openVideoModal() {
+      document.getElementById('modal-vid-title').textContent = 'Add Video';
+      document.getElementById('vid-id').value = '';
+      document.getElementById('vid-title').value = '';
+      document.getElementById('vid-youtube').value = '';
+      document.getElementById('vid-desc').value = '';
+      document.getElementById('vid-order').value = appData.videos.length + 1;
+      document.getElementById('vid-visible').checked = true;
+      openModal('modal-video');
+    }
+
+    function editVideoItem(id) {
+      const vid = appData.videos.find(v => v.id === id);
+      if (!vid) return;
+      document.getElementById('modal-vid-title').textContent = 'Edit Video';
+      document.getElementById('vid-id').value = vid.id;
+      document.getElementById('vid-title').value = vid.title;
+      document.getElementById('vid-youtube').value = vid.youtube_id;
+      document.getElementById('vid-desc').value = vid.description || '';
+      document.getElementById('vid-order').value = vid.sort_order || 0;
+      document.getElementById('vid-visible').checked = Boolean(vid.visible);
+      openModal('modal-video');
+    }
+
+    async function saveVideoItem(e) {
+      e.preventDefault();
+      const id = document.getElementById('vid-id').value;
+      const title = document.getElementById('vid-title').value.trim();
+      const youtube_id = extractYouTubeId(document.getElementById('vid-youtube').value);
+      const description = document.getElementById('vid-desc').value.trim();
+      const sort_order = Number(document.getElementById('vid-order').value) || 0;
+      const visible = document.getElementById('vid-visible').checked;
+
+      if (!youtube_id) {
+        showToast('Please enter a valid YouTube URL or ID', true);
+        return;
+      }
+
+      if (id) {
+        const idx = appData.videos.findIndex(v => v.id === id);
+        if (idx !== -1) {
+          appData.videos[idx] = { ...appData.videos[idx], title, youtube_id, description, sort_order, visible };
+        }
+      } else {
+        appData.videos.push({ id: `vid-${Date.now()}`, title, youtube_id, description, sort_order, visible });
+      }
+
+      await saveSection('videos', appData.videos);
+      closeModal('modal-video');
+      renderVideos();
+      showToast('Video saved!');
+    }
+
+    async function deleteVideoItem(id) {
+      if (!confirm('Delete this video reel?')) return;
+      appData.videos = appData.videos.filter(v => v.id !== id);
+      await saveSection('videos', appData.videos);
+      renderVideos();
+      showToast('Video deleted.');
+    }
+
+    // 4. Render Testimonials
+    function renderTestimonials() {
+      const list = document.getElementById('testimonials-list');
+      const empty = document.getElementById('testimonials-empty');
+      list.innerHTML = '';
+
+      if (appData.testimonials.length === 0) {
+        empty.classList.remove('hidden');
+        return;
+      }
+      empty.classList.add('hidden');
+
+      appData.testimonials.forEach(t => {
+        const div = document.createElement('div');
+        div.className = 'bg-white rounded-2xl p-5 border border-[#ECE0D2] shadow-sm flex items-start justify-between gap-4';
+        div.innerHTML = `
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-[#1F1A18] text-sm">${t.client_name}</span>
+              ${t.project_location ? `<span class="text-xs text-[#5A4A43]">(${t.project_location})</span>` : ''}
+              <span class="text-xs text-amber-500">${'★'.repeat(t.rating || 5)}</span>
+            </div>
+            <p class="text-xs text-[#5A4A43] italic">"${t.quote}"</p>
+          </div>
+          <div class="flex items-center gap-1 shrink-0">
+            <button onclick="editTestimonialItem('${t.id}')" class="px-2.5 py-1 bg-[#ECE0D2] rounded text-xs font-bold">Edit</button>
+            <button onclick="deleteTestimonialItem('${t.id}')" class="px-2.5 py-1 bg-red-100 text-red-700 rounded text-xs font-bold">Delete</button>
+          </div>
+        `;
+        list.appendChild(div);
+      });
+    }
+
+    function openTestimonialModal() {
+      document.getElementById('modal-test-title').textContent = 'Add Testimonial';
+      document.getElementById('test-id').value = '';
+      document.getElementById('test-name').value = '';
+      document.getElementById('test-location').value = '';
+      document.getElementById('test-rating').value = '5';
+      document.getElementById('test-order').value = appData.testimonials.length + 1;
+      document.getElementById('test-quote').value = '';
+      document.getElementById('test-visible').checked = true;
+      openModal('modal-testimonial');
+    }
+
+    function editTestimonialItem(id) {
+      const t = appData.testimonials.find(item => item.id === id);
+      if (!t) return;
+      document.getElementById('modal-test-title').textContent = 'Edit Testimonial';
+      document.getElementById('test-id').value = t.id;
+      document.getElementById('test-name').value = t.client_name;
+      document.getElementById('test-location').value = t.project_location || '';
+      document.getElementById('test-rating').value = String(t.rating || 5);
+      document.getElementById('test-order').value = t.sort_order || 0;
+      document.getElementById('test-quote').value = t.quote;
+      document.getElementById('test-visible').checked = Boolean(t.visible);
+      openModal('modal-testimonial');
+    }
+
+    async function saveTestimonialItem(e) {
+      e.preventDefault();
+      const id = document.getElementById('test-id').value;
+      const client_name = document.getElementById('test-name').value.trim();
+      const project_location = document.getElementById('test-location').value.trim();
+      const rating = Number(document.getElementById('test-rating').value) || 5;
+      const sort_order = Number(document.getElementById('test-order').value) || 0;
+      const quote = document.getElementById('test-quote').value.trim();
+      const visible = document.getElementById('test-visible').checked;
+
+      if (id) {
+        const idx = appData.testimonials.findIndex(t => t.id === id);
+        if (idx !== -1) {
+          appData.testimonials[idx] = { ...appData.testimonials[idx], client_name, project_location, rating, sort_order, quote, visible };
+        }
+      } else {
+        appData.testimonials.push({ id: `test-${Date.now()}`, client_name, project_location, rating, sort_order, quote, visible });
+      }
+
+      await saveSection('testimonials', appData.testimonials);
+      closeModal('modal-testimonial');
+      renderTestimonials();
+      showToast('Testimonial saved!');
+    }
+
+    async function deleteTestimonialItem(id) {
+      if (!confirm('Delete this testimonial?')) return;
+      appData.testimonials = appData.testimonials.filter(t => t.id !== id);
+      await saveSection('testimonials', appData.testimonials);
+      renderTestimonials();
+      showToast('Testimonial removed.');
+    }
+
+    // 5. Render Settings
+    function renderSettings() {
+      const s = appData.settings || {};
+      const fields = [
+        { id: 'company_name', val: s.companyName || s.company_name || '' },
+        { id: 'brand_name', val: s.brandName || s.brand_name || '' },
+        { id: 'tagline', val: s.tagline || '' },
+        { id: 'service_areas', val: Array.isArray(s.serviceAreas) ? s.serviceAreas.join(', ') : (s.service_areas || '') },
+        { id: 'whatsapp_message', val: s.whatsappMessage || s.whatsapp_message || '' },
+        { id: 'phone', val: s.phone || '' },
+        { id: 'whatsapp_number', val: s.whatsapp_number || '' },
+        { id: 'email_primary', val: s.email_primary || '' },
+        { id: 'email_secondary', val: s.email_secondary || '' },
+        { id: 'address', val: s.address || '' },
+        { id: 'hours', val: s.hours || '' },
+        { id: 'youtube_url', val: s.youtube_url || '' },
+        { id: 'whatsapp_catalogue_url', val: s.whatsapp_catalogue_url || '' },
+        { id: 'hero_headline', val: s.hero_headline || '' },
+        { id: 'hero_subtext', val: s.hero_subtext || '' },
+        { id: 'about_story', val: s.about_story || '' }
+      ];
+      fields.forEach(f => {
+        const el = document.getElementById(`set-${f.id}`);
+        if (el) el.value = f.val;
+      });
+    }
+
+    async function saveSiteSettings() {
+      const s = { ...appData.settings };
+      const getVal = (id) => (document.getElementById(`set-${id}`)?.value || '').trim();
+
+      s.companyName = getVal('company_name');
+      s.brandName = getVal('brand_name');
+      s.tagline = getVal('tagline');
+      
+      const areasStr = getVal('service_areas');
+      s.serviceAreas = areasStr ? areasStr.split(',').map(a => a.trim()).filter(Boolean) : [];
+      
+      s.whatsappMessage = getVal('whatsapp_message');
+      s.phone = getVal('phone');
+      s.phone_raw = s.phone.replace(/[^0-9]/g, '');
+      s.whatsapp_number = getVal('whatsapp_number');
+      s.email_primary = getVal('email_primary');
+      s.email_secondary = getVal('email_secondary');
+      s.address = getVal('address');
+      s.hours = getVal('hours');
+      s.youtube_url = getVal('youtube_url');
+      s.whatsapp_catalogue_url = getVal('whatsapp_catalogue_url');
+      s.hero_headline = getVal('hero_headline');
+      s.hero_subtext = getVal('hero_subtext');
+      s.about_story = getVal('about_story');
+
+      appData.settings = s;
+      await saveSection('settings', appData.settings);
+      showToast('Site settings saved sitewide!');
+    }
+
+    // Save Section Utility
+    async function saveSection(type, data) {
+      try {
+        const res = await fetch(`/api/save/${type}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const json = await res.json();
+        if (!json.success) showToast(json.error, true);
+      } catch (err) {
+        showToast(`Failed to save ${type}`, true);
+      }
+    }
+
+    // 6. Publish to GitHub
+    function openPublishModal() {
+      document.getElementById('publish-error-box').classList.add('hidden');
+      openModal('modal-publish');
+    }
+
+    async function executePublish() {
+      const btn = document.getElementById('btn-confirm-publish');
+      const errBox = document.getElementById('publish-error-box');
+      btn.disabled = true;
+      btn.innerHTML = `<span>Pushing to GitHub...</span>`;
+      errBox.classList.add('hidden');
+
+      try {
+        const res = await fetch('/api/publish', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: `content: update site data via VEBCO local admin [${new Date().toLocaleString()}]` })
+        });
+        const json = await res.json();
+        if (json.success) {
+          closeModal('modal-publish');
+          showToast('🚀 Pushed to GitHub! Live site is building and will update shortly.');
+        } else {
+          errBox.textContent = json.error || 'Push failed.';
+          errBox.classList.remove('hidden');
+        }
+      } catch (err) {
+        errBox.textContent = 'Server connection error during publish.';
+        errBox.classList.remove('hidden');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<span>Confirm & Push</span>`;
+      }
+    }
+
+    loadAllData();
+  </script>
+</body>
+</html>

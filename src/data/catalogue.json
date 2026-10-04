@@ -1,0 +1,263 @@
+[
+  {
+    "id": "cseb-mud-bricks-house",
+    "title": "CSEB Mud Bricks House",
+    "slug": "cseb-mud-bricks-house",
+    "description": "We build houses using Compressed Stabilized Earth Blocks (CSEB), offering thermal comfort, natural aesthetics, and exceptional structural longevity with minimal environmental footprint.",
+    "price": 2750,
+    "price_unit": "per sq ft",
+    "category": "Residential House",
+    "is_featured": true,
+    "visible": true,
+    "sort_order": 1,
+    "images": [
+      {
+        "id": "cseb-dindigul-1",
+        "image_url": "images/dindigul-eco-house-exterior.webp",
+        "caption": "2-Storey CSEB Interlocking Earth Brick House with Terracotta Jali and Clay Tile Roof (Dindigul Project)",
+        "sort_order": 1
+      },
+      {
+        "id": "cseb-dindigul-2",
+        "image_url": "images/dindigul-interior-staircase.webp",
+        "caption": "Living room interior featuring Athangudi patterned floor tiles and handcrafted wooden staircase",
+        "sort_order": 2
+      },
+      {
+        "id": "cseb-dindigul-3",
+        "image_url": "images/dindigul-skylight-atrium.webp",
+        "caption": "Double-height central atrium with natural skylight and terracotta jali balustrades",
+        "sort_order": 3
+      },
+      {
+        "id": "cseb-dindigul-4",
+        "image_url": "images/dindigul-veranda-courtyard.webp",
+        "caption": "Entrance veranda with traditional wooden gate and red oxide kolam border",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "id": "new-eco-model-house",
+    "title": "New ECO Model House",
+    "slug": "new-eco-model-house",
+    "description": "New model house featuring optimized spatial planning, exposed CSEB interlocking bricks, decorative terracotta filler slab ceiling, vaulted brick skylight dome, organic bamboo railings, and fast-track execution (K.R. Puram Project).",
+    "price": 2000,
+    "price_unit": "per sq ft",
+    "category": "Residential House",
+    "is_featured": true,
+    "visible": true,
+    "sort_order": 4,
+    "images": [
+      {
+        "id": "kr-img-1",
+        "image_url": "images/kr-puram-eco-house-exterior.webp",
+        "caption": "Multi-storey CSEB residence with brick entrance arch and terracotta jali facade at K.R. Puram, Bangalore",
+        "sort_order": 1
+      },
+      {
+        "id": "kr-img-2",
+        "image_url": "images/kr-puram-living-hall-filler-slab.webp",
+        "caption": "Spacious living hall with decorative terracotta filler slab ceiling and bamboo staircase",
+        "sort_order": 2
+      },
+      {
+        "id": "kr-img-3",
+        "image_url": "images/kr-puram-stairwell-jali-light.webp",
+        "caption": "Multi-level stairwell with bamboo railing and natural light through terracotta jalis",
+        "sort_order": 3
+      },
+      {
+        "id": "kr-img-4",
+        "image_url": "images/kr-puram-vaulted-brick-skylight.webp",
+        "caption": "Vaulted CSEB brick dome ceiling with central skylight and natural illumination",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "id": "eco-friendly-house-construction",
+    "title": "ECO Friendly House Construction",
+    "slug": "eco-friendly-house-construction",
+    "description": "Turnkey eco-friendly house construction engineered for sustainability. Saves 60% cement and sand while delivering naturally cool indoor temperatures with CSEB blocks, filler slabs, and Athangudi flooring.",
+    "price": 2300,
+    "price_unit": "per sq ft",
+    "category": "Residential House",
+    "is_featured": true,
+    "visible": true,
+    "sort_order": 5,
+    "images": [
+      {
+        "id": "eco-kr-1",
+        "image_url": "images/kr-puram-living-hall-filler-slab.webp",
+        "caption": "Open-plan living room with cooling terracotta filler slab ceiling and natural earth finishes",
+        "sort_order": 1
+      },
+      {
+        "id": "eco-kr-2",
+        "image_url": "images/kr-puram-vaulted-brick-skylight.webp",
+        "caption": "Handcrafted CSEB brick vaulted ceiling dome with central skylight",
+        "sort_order": 2
+      },
+      {
+        "id": "eco-kr-3",
+        "image_url": "images/kr-puram-eco-house-exterior.webp",
+        "caption": "Two-storey CSEB elevation with archway and jali ventilation at K.R. Puram, Bangalore",
+        "sort_order": 3
+      },
+      {
+        "id": "eco-kr-4",
+        "image_url": "images/kr-puram-stairwell-jali-light.webp",
+        "caption": "Stairwell design integrating natural bamboo and daylight cast through terracotta jali",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "id": "resort-cottages",
+    "title": "Resort & Cottages",
+    "slug": "resort-cottages",
+    "description": "Exposed Brick and Interlocking mud brick cottage designs for eco resorts, farm retreats, and nature getaways blending harmoniously with surrounding landscapes.",
+    "price": 1700,
+    "price_unit": "per sq ft",
+    "category": "Resorts & Cottages",
+    "is_featured": true,
+    "visible": true,
+    "sort_order": 4,
+    "images": []
+  },
+  {
+    "id": "earth-bricks",
+    "title": "Earth Bricks",
+    "slug": "earth-bricks",
+    "description": "Specialized earth brick construction leveraging soil stabilized blocks for sturdy, climate-resilient residential and farm buildings.",
+    "price": 2100,
+    "price_unit": "per sq ft",
+    "category": "Residential House",
+    "is_featured": false,
+    "visible": true,
+    "sort_order": 5,
+    "images": []
+  },
+  {
+    "id": "traditional-house",
+    "title": "Traditional Courtyard House",
+    "slug": "traditional-courtyard-house",
+    "description": "Authentic traditional courtyard house built with natural clay and CSEB earth blocks, central courtyards (thotti mane / nadumuttam), Athangudi tile flooring, double-height skylight atrium, and classical vernacular detailing.",
+    "price": 1950,
+    "price_unit": "per sq ft",
+    "category": "Traditional Courtyard",
+    "is_featured": true,
+    "visible": true,
+    "sort_order": 3,
+    "images": [
+      {
+        "id": "trad-dindigul-1",
+        "image_url": "images/dindigul-veranda-courtyard.webp",
+        "caption": "Entrance veranda and courtyard gate with terracotta jali panels",
+        "sort_order": 1
+      },
+      {
+        "id": "trad-dindigul-2",
+        "image_url": "images/dindigul-interior-staircase.webp",
+        "caption": "Living area with Athangudi handmade floor tiles and exposed CSEB brickwork",
+        "sort_order": 2
+      },
+      {
+        "id": "trad-dindigul-3",
+        "image_url": "images/dindigul-skylight-atrium.webp",
+        "caption": "Mezzanine atrium with skylight and natural terracotta jali railings",
+        "sort_order": 3
+      },
+      {
+        "id": "trad-dindigul-4",
+        "image_url": "images/dindigul-eco-house-exterior.webp",
+        "caption": "Two-storey elevation with clay tile roof and terracotta jali facade",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "id": "valiant-academy-institutional-campus",
+    "title": "Valiant Academy — Institutional Campus",
+    "slug": "valiant-academy-institutional-campus",
+    "description": "Turnkey institutional and academic campus construction at Kanakapura Road, Bangalore. Built with sustainable Compressed Stabilized Earth Blocks (CSEB) and interlocking soil bricks, featuring an open-air stone amphitheater, central courtyard with water feature, shaded colonnade verandas, and naturally ventilated classrooms.",
+    "price": null,
+    "price_unit": "Contact for price",
+    "category": "Academic Building",
+    "is_featured": true,
+    "visible": true,
+    "sort_order": 2,
+    "images": [
+      {
+        "id": "valiant-img-1",
+        "image_url": "images/valiant-academy-amphitheater.webp",
+        "caption": "Semicircular open-air stone amphitheater and academic block",
+        "sort_order": 1
+      },
+      {
+        "id": "valiant-img-2",
+        "image_url": "images/valiant-academy-campus-lawn.webp",
+        "caption": "Campus overview with landscaped lawn and clay tile pavilion",
+        "sort_order": 2
+      },
+      {
+        "id": "valiant-img-3",
+        "image_url": "images/valiant-academy-courtyard.webp",
+        "caption": "Central courtyard with water feature and CSEB mud brick classroom block",
+        "sort_order": 3
+      },
+      {
+        "id": "valiant-img-4",
+        "image_url": "images/valiant-academy-veranda.webp",
+        "caption": "Covered colonnade veranda walkway with exposed earth brick masonry",
+        "sort_order": 4
+      },
+      {
+        "id": "valiant-img-5",
+        "image_url": "images/valiant-academy-interior-hall.webp",
+        "caption": "Spacious multi-purpose hall with patterned tile flooring and natural light",
+        "sort_order": 5
+      }
+    ]
+  },
+  {
+    "id": "contemporary-house-model",
+    "title": "Contemporary House Model",
+    "slug": "contemporary-house-model",
+    "description": "Modern contemporary aesthetic combined with eco-friendly interlocking bricks, large openings, cross ventilation, and sleek earth-tone finishes.",
+    "price": 1850,
+    "price_unit": "per sq ft",
+    "category": "Residential House",
+    "is_featured": false,
+    "visible": true,
+    "sort_order": 8,
+    "images": []
+  },
+  {
+    "id": "commercial-projects",
+    "title": "Commercial Projects",
+    "slug": "commercial-projects",
+    "description": "Turnkey commercial buildings, creative studio spaces, eco-resort dining halls, and institutional architecture built with fast-track precision.",
+    "price": 2000,
+    "price_unit": "per sq ft",
+    "category": "Commercial Building",
+    "is_featured": false,
+    "visible": true,
+    "sort_order": 9,
+    "images": []
+  },
+  {
+    "id": "mud-bricks",
+    "title": "Mud Bricks",
+    "slug": "mud-bricks",
+    "description": "High-density, precision-pressed Compressed Stabilized Earth Blocks (CSEB) and interlocking soil bricks supplied directly for green building initiatives.",
+    "price": null,
+    "price_unit": "Contact for price",
+    "category": "Raw Materials",
+    "is_featured": false,
+    "visible": true,
+    "sort_order": 10,
+    "images": []
+  }
+]

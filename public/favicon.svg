@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="14" fill="#9C4123"/>
+  <!-- Interlocking Brick Geometric Icon with Eco Leaf -->
+  <rect x="14" y="18" width="36" height="12" rx="2" fill="#FAF8F6"/>
+  <rect x="22" y="14" width="20" height="4" rx="1.5" fill="#FAF8F6" fill-opacity="0.9"/>
+  <rect x="14" y="34" width="36" height="12" rx="2" fill="#FAF8F6"/>
+  <rect x="22" y="30" width="20" height="4" rx="1.5" fill="#FAF8F6" fill-opacity="0.9"/>
+  <!-- Leaf accent -->
+  <path d="M42 42C42 42 48 38 48 30C40 30 36 36 36 36L42 42Z" fill="#3D8C5A"/>
+  <path d="M42 42L36 36" stroke="#FAF8F6" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

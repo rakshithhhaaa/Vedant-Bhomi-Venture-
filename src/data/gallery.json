@@ -1,0 +1,106 @@
+[
+  {
+    "id": "gal-valiant-amphitheater",
+    "image_url": "images/valiant-academy-amphitheater.webp",
+    "caption": "Valiant Academy — Semicircular open-air stone amphitheater & multi-level academic wings at Kanakapura Road, Bangalore",
+    "category": "Academic Building",
+    "visible": true,
+    "sort_order": 1
+  },
+  {
+    "id": "gal-valiant-lawn",
+    "image_url": "images/valiant-academy-campus-lawn.webp",
+    "caption": "Valiant Academy — Eco-friendly academic block with central lawn and clay tile pavilion roof",
+    "category": "Academic Building",
+    "visible": true,
+    "sort_order": 2
+  },
+  {
+    "id": "gal-valiant-courtyard",
+    "image_url": "images/valiant-academy-courtyard.webp",
+    "caption": "Valiant Academy — Central stone courtyard with water feature and exposed CSEB mud brick classroom block",
+    "category": "Academic Building",
+    "visible": true,
+    "sort_order": 3
+  },
+  {
+    "id": "gal-valiant-veranda",
+    "image_url": "images/valiant-academy-veranda.webp",
+    "caption": "Valiant Academy — Shaded colonnade veranda with circular pillars and interlocking brick walls",
+    "category": "Academic Building",
+    "visible": true,
+    "sort_order": 4
+  },
+  {
+    "id": "gal-valiant-hall",
+    "image_url": "images/valiant-academy-interior-hall.webp",
+    "caption": "Valiant Academy — Multi-purpose campus hall with traditional patterned tile inlay and exposed earth brick architecture",
+    "category": "Academic Building",
+    "visible": true,
+    "sort_order": 5
+  },
+  {
+    "id": "gal-dindigul-exterior",
+    "image_url": "images/dindigul-eco-house-exterior.webp",
+    "caption": "Dindigul Eco Mud House — 2-Storey CSEB Interlocking Brick Villa with terracotta jali screens and clay tile roof, Dindigul, Tamil Nadu",
+    "category": "Residential House",
+    "visible": true,
+    "sort_order": 6
+  },
+  {
+    "id": "gal-dindigul-interior-staircase",
+    "image_url": "images/dindigul-interior-staircase.webp",
+    "caption": "Dindigul Eco Mud House — Interior living space with Athangudi geometric floral tile flooring, wooden staircase, and exposed earth walls",
+    "category": "Traditional Courtyard",
+    "visible": true,
+    "sort_order": 7
+  },
+  {
+    "id": "gal-dindigul-skylight-atrium",
+    "image_url": "images/dindigul-skylight-atrium.webp",
+    "caption": "Dindigul Eco Mud House — Double-height central atrium with natural daylight skylight and terracotta jali balustrades",
+    "category": "Traditional Courtyard",
+    "visible": true,
+    "sort_order": 8
+  },
+  {
+    "id": "gal-dindigul-veranda-courtyard",
+    "image_url": "images/dindigul-veranda-courtyard.webp",
+    "caption": "Dindigul Eco Mud House — Entrance veranda with kolam border, traditional wooden gate, and terracotta jali boundary",
+    "category": "Residential House",
+    "visible": true,
+    "sort_order": 9
+  },
+  {
+    "id": "gal-krpuram-exterior",
+    "image_url": "images/kr-puram-eco-house-exterior.webp",
+    "caption": "K.R. Puram Eco Residence — Multi-storey CSEB mud brick home with ornamental brick entrance arch and terracotta jali facade, Bangalore",
+    "category": "Residential House",
+    "visible": true,
+    "sort_order": 10
+  },
+  {
+    "id": "gal-krpuram-living-hall",
+    "image_url": "images/kr-puram-living-hall-filler-slab.webp",
+    "caption": "K.R. Puram Eco Residence — Open living hall with decorative terracotta filler slab ceiling, organic bamboo staircase, and Athangudi tile flooring",
+    "category": "Residential House",
+    "visible": true,
+    "sort_order": 11
+  },
+  {
+    "id": "gal-krpuram-stairwell",
+    "image_url": "images/kr-puram-stairwell-jali-light.webp",
+    "caption": "K.R. Puram Eco Residence — Multi-level stairwell with handcrafted bamboo railings and natural sunlight streaming through terracotta jali screens",
+    "category": "Residential House",
+    "visible": true,
+    "sort_order": 12
+  },
+  {
+    "id": "gal-krpuram-vaulted-skylight",
+    "image_url": "images/kr-puram-vaulted-brick-skylight.webp",
+    "caption": "K.R. Puram Eco Residence — Handcrafted vaulted CSEB earth brick roof dome with central ambient skylight",
+    "category": "Residential House",
+    "visible": true,
+    "sort_order": 13
+  }
+]
