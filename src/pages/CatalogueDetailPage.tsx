@@ -42,11 +42,11 @@ export const CatalogueDetailPage: React.FC = () => {
   if (!item) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-20 text-center space-y-4">
-        <h1 className="text-2xl font-bold text-earth-900">Project Model Not Found</h1>
-        <p className="text-earth-600 text-sm">The requested construction model or material item could not be located.</p>
+        <h1 className="font-serif text-2xl font-bold text-earth">Project Model Not Found</h1>
+        <p className="text-earth/70 text-sm">The requested construction model or material item could not be located.</p>
         <Link
           to="/catalogue"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-terracotta-600 text-white font-semibold text-sm"
+          className="btn-primary inline-flex items-center gap-2 text-sm"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Catalogue</span>
@@ -61,7 +61,7 @@ export const CatalogueDetailPage: React.FC = () => {
 
   const directWhatsappHref = getWhatsAppUrl(
     settings.whatsapp_number,
-    `Hello ${settings.companyName || 'Vedant Bhomi Venture'}, I would like to get a turnkey quote and technical details for "${item.title}". My location is: `
+    `Hello ${settings.companyName || 'Vedant Bhomi Venture'}, I would like a quote for ${item.title}. My location is: `
   );
 
   const handleEnquirySubmit = (e: React.FormEvent) => {
@@ -109,31 +109,31 @@ export const CatalogueDetailPage: React.FC = () => {
       />
 
       {/* Breadcrumb */}
-      <nav className="flex items-center gap-2 text-xs text-earth-500">
-        <Link to="/" className="hover:text-terracotta-600">Home</Link>
+      <nav className="flex items-center gap-2 text-xs text-earth/60 font-medium">
+        <Link to="/" className="hover:text-terracotta transition-colors">Home</Link>
         <span>/</span>
-        <Link to="/catalogue" className="hover:text-terracotta-600">Catalogue</Link>
+        <Link to="/catalogue" className="hover:text-terracotta transition-colors">Catalogue</Link>
         <span>/</span>
-        <span className="text-earth-900 font-semibold truncate">{item.title}</span>
+        <span className="text-earth font-semibold truncate">{item.title}</span>
       </nav>
 
       {/* Main Grid: Left Gallery (7 cols), Right Info & Form (5 cols) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
         {/* Left: Gallery & Visuals */}
-        <div className="lg:col-span-7 space-y-4">
-          <div className="relative rounded-3xl overflow-hidden bg-white border border-clay-200 shadow-sm">
+        <div className="lg:col-span-7 space-y-6">
+          <div className="relative card-earthen overflow-hidden bg-sand">
             {hasImages ? (
               <div
-                className="cursor-pointer group relative h-80 sm:h-[450px]"
+                className="cursor-pointer group relative aspect-[4/3] sm:aspect-[16/10] overflow-hidden"
                 onClick={() => setIsLightboxOpen(true)}
               >
                 <img
                   src={currentImage!}
                   alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500 ease-out"
                 />
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
-                  <span className="bg-earth-900/80 backdrop-blur-md text-white px-4 py-2 rounded-full text-xs font-bold">
+                <div className="absolute inset-0 bg-earth/20 group-hover:bg-earth/40 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                  <span className="bg-earth/90 backdrop-blur-md text-cream px-4 py-2 rounded-full text-xs font-bold shadow-lg">
                     Click to view full screen
                   </span>
                 </div>
@@ -142,7 +142,7 @@ export const CatalogueDetailPage: React.FC = () => {
               <ImagePlaceholder
                 title={item.title}
                 category={item.category}
-                className="h-80 sm:h-[450px] w-full"
+                className="aspect-[4/3] sm:aspect-[16/10] w-full"
                 iconSize="lg"
               />
             )}
@@ -150,15 +150,15 @@ export const CatalogueDetailPage: React.FC = () => {
 
           {/* Thumbnails if multiple images exist */}
           {hasImages && images.length > 1 && (
-            <div className="flex items-center gap-3 overflow-x-auto pb-2">
+            <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-thin">
               {images.map((img, idx) => (
                 <button
                   key={img.id}
                   onClick={() => setActiveImageIndex(idx)}
                   className={`w-20 h-20 rounded-xl overflow-hidden border-2 transition-all shrink-0 ${
                     activeImageIndex === idx
-                      ? 'border-terracotta-600 ring-2 ring-terracotta-200'
-                      : 'border-clay-200 hover:border-clay-400 opacity-70 hover:opacity-100'
+                      ? 'border-terracotta ring-2 ring-terracotta/30'
+                      : 'border-clay/30 hover:border-clay/60 opacity-70 hover:opacity-100'
                   }`}
                 >
                   <img src={img.image_url} alt="" className="w-full h-full object-cover" />
@@ -168,42 +168,42 @@ export const CatalogueDetailPage: React.FC = () => {
           )}
 
           {/* Technical Specifications Highlights */}
-          <div className="bg-white rounded-2xl p-6 border border-clay-200 shadow-sm space-y-4">
-            <h3 className="text-base font-bold text-earth-900 flex items-center gap-2">
-              <Layers className="w-5 h-5 text-terracotta-600" />
+          <div className="card-earthen p-6 sm:p-8 space-y-5">
+            <h3 className="font-serif text-lg font-bold text-earth flex items-center gap-2.5">
+              <Layers className="w-5 h-5 text-terracotta" />
               <span>Technical & Ecological Features</span>
             </h3>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
-              <div className="flex items-start gap-2.5 p-3 rounded-xl bg-clay-50 border border-clay-200">
-                <CheckCircle2 className="w-4 h-4 text-forest-600 shrink-0 mt-0.5" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs sm:text-sm">
+              <div className="flex items-start gap-3 p-4 rounded-xl bg-sand/50 border border-clay/20">
+                <CheckCircle2 className="w-4 h-4 text-forest shrink-0 mt-0.5" />
                 <div>
-                  <span className="block font-bold text-earth-900">Dry-Stack Interlocking</span>
-                  <span className="text-earth-600 text-xs">No cement mortar bonding needed between bricks</span>
+                  <span className="block font-bold text-earth">Dry-Stack Interlocking</span>
+                  <span className="text-earth/70 text-xs mt-0.5 block leading-relaxed">No cement mortar bonding needed between bricks</span>
                 </div>
               </div>
 
-              <div className="flex items-start gap-2.5 p-3 rounded-xl bg-clay-50 border border-clay-200">
-                <Leaf className="w-4 h-4 text-forest-600 shrink-0 mt-0.5" />
+              <div className="flex items-start gap-3 p-4 rounded-xl bg-sand/50 border border-clay/20">
+                <Leaf className="w-4 h-4 text-forest shrink-0 mt-0.5" />
                 <div>
-                  <span className="block font-bold text-earth-900">60% Cement & Sand Saved</span>
-                  <span className="text-earth-600 text-xs">Dramatically lowers carbon footprint and raw material bill</span>
+                  <span className="block font-bold text-earth">Saves about 60% of cement and sand</span>
+                  <span className="text-earth/70 text-xs mt-0.5 block leading-relaxed">Dramatically lowers carbon footprint and raw material bill</span>
                 </div>
               </div>
 
-              <div className="flex items-start gap-2.5 p-3 rounded-xl bg-clay-50 border border-clay-200">
-                <Sparkles className="w-4 h-4 text-terracotta-600 shrink-0 mt-0.5" />
+              <div className="flex items-start gap-3 p-4 rounded-xl bg-sand/50 border border-clay/20">
+                <Sparkles className="w-4 h-4 text-terracotta shrink-0 mt-0.5" />
                 <div>
-                  <span className="block font-bold text-earth-900">Thermal Insulation</span>
-                  <span className="text-earth-600 text-xs">4°C-6°C cooler interiors naturally throughout the year</span>
+                  <span className="block font-bold text-earth">Thermal Insulation</span>
+                  <span className="text-earth/70 text-xs mt-0.5 block leading-relaxed">Naturally cooler interiors throughout the year</span>
                 </div>
               </div>
 
-              <div className="flex items-start gap-2.5 p-3 rounded-xl bg-clay-50 border border-clay-200">
-                <Zap className="w-4 h-4 text-terracotta-600 shrink-0 mt-0.5" />
+              <div className="flex items-start gap-3 p-4 rounded-xl bg-sand/50 border border-clay/20">
+                <Zap className="w-4 h-4 text-terracotta shrink-0 mt-0.5" />
                 <div>
-                  <span className="block font-bold text-earth-900">Fast-Track Delivery</span>
-                  <span className="text-earth-600 text-xs">Swift masonry alignment accelerates completion timelines</span>
+                  <span className="block font-bold text-earth">Fast-Track Delivery</span>
+                  <span className="text-earth/70 text-xs mt-0.5 block leading-relaxed">Swift masonry alignment accelerates completion timelines</span>
                 </div>
               </div>
             </div>
@@ -212,31 +212,31 @@ export const CatalogueDetailPage: React.FC = () => {
 
         {/* Right: Info, Pricing & WhatsApp Form */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-clay-200 shadow-sm space-y-6">
+          <div className="card-earthen p-6 sm:p-8 space-y-6">
             <div className="space-y-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-forest-700 bg-forest-50 px-2.5 py-1 rounded-md border border-forest-200">
+              <span className="text-xs font-bold uppercase tracking-wider text-forest bg-forest/10 px-3 py-1 rounded-full border border-forest/20 inline-block">
                 {item.category}
               </span>
-              <h1 className="font-serif text-2xl sm:text-3xl font-extrabold text-earth-900">
+              <h1 className="font-serif text-2xl sm:text-3xl font-extrabold text-earth leading-tight">
                 {item.title}
               </h1>
             </div>
 
-            <div className="p-4 rounded-2xl bg-terracotta-50 border border-terracotta-200/80 flex items-center justify-between">
+            <div className="p-5 rounded-2xl bg-terracotta/10 border border-terracotta/20 flex items-center justify-between">
               <div>
-                <span className="block text-xs font-bold text-terracotta-900 uppercase tracking-wider">
-                  Turnkey Construction Rate
+                <span className="block text-[11px] font-bold text-terracotta uppercase tracking-wider">
+                  Price
                 </span>
-                <span className="text-2xl font-black text-terracotta-700">
-                  {formatPrice(item.price, item.price_unit)}
+                <span className="font-serif text-xl sm:text-2xl font-bold text-terracotta">
+                  Contact for price
                 </span>
               </div>
-              <span className="text-xs text-terracotta-800 bg-white px-2.5 py-1 rounded-lg font-semibold border border-terracotta-200">
+              <span className="text-xs text-earth/80 bg-cream px-3 py-1 rounded-full font-semibold border border-clay/20 shadow-sm">
                 South India
               </span>
             </div>
 
-            <div className="prose text-earth-700 text-sm leading-relaxed border-t border-clay-100 pt-4">
+            <div className="text-earth/80 text-sm leading-relaxed border-t border-clay/20 pt-4">
               <p>{item.description}</p>
             </div>
 
@@ -245,19 +245,19 @@ export const CatalogueDetailPage: React.FC = () => {
               href={directWhatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2.5 py-3.5 px-4 rounded-xl bg-forest-600 hover:bg-forest-700 text-white font-bold text-sm shadow-md transition-all focus:ring-4 focus:ring-forest-200"
+              className="btn-forest w-full py-3.5 text-center flex items-center justify-center gap-2 text-sm font-bold shadow-md"
             >
               <MessageSquare className="w-4 h-4 fill-white" />
               <span>Instant WhatsApp Inquiry for {item.title}</span>
             </a>
 
             {/* Quote Request via WhatsApp Form */}
-            <div className="pt-6 border-t border-clay-200 space-y-4">
+            <div className="pt-6 border-t border-clay/20 space-y-4">
               <div className="space-y-1">
-                <h3 className="text-base font-bold text-earth-900">
+                <h3 className="font-serif text-base font-bold text-earth">
                   Request Floor Plans & Quotation
                 </h3>
-                <p className="text-xs text-earth-500">
+                <p className="text-xs text-earth/60">
                   Fill in your details below to open a direct WhatsApp chat with our engineers.
                 </p>
               </div>
@@ -287,7 +287,7 @@ export const CatalogueDetailPage: React.FC = () => {
                     placeholder="Your Full Name *"
                     value={formState.name}
                     onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-clay-50 border border-clay-300 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-terracotta-500 focus:bg-white text-earth-900"
+                    className="w-full px-4 py-3 rounded-xl bg-sand/40 border border-clay/30 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-terracotta/30 focus:border-terracotta focus:bg-white text-earth transition-all"
                   />
                 </div>
 
@@ -298,14 +298,14 @@ export const CatalogueDetailPage: React.FC = () => {
                     placeholder="Phone / WhatsApp *"
                     value={formState.phone}
                     onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-clay-50 border border-clay-300 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-terracotta-500 focus:bg-white text-earth-900"
+                    className="w-full px-4 py-3 rounded-xl bg-sand/40 border border-clay/30 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-terracotta/30 focus:border-terracotta focus:bg-white text-earth transition-all"
                   />
                   <input
                     type="email"
                     placeholder="Email (optional)"
                     value={formState.email}
                     onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-clay-50 border border-clay-300 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-terracotta-500 focus:bg-white text-earth-900"
+                    className="w-full px-4 py-3 rounded-xl bg-sand/40 border border-clay/30 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-terracotta/30 focus:border-terracotta focus:bg-white text-earth transition-all"
                   />
                 </div>
 
@@ -316,12 +316,12 @@ export const CatalogueDetailPage: React.FC = () => {
                     placeholder="Your Location / City *"
                     value={formState.location_city}
                     onChange={(e) => setFormState({ ...formState, location_city: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-clay-50 border border-clay-300 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-terracotta-500 focus:bg-white text-earth-900"
+                    className="w-full px-4 py-3 rounded-xl bg-sand/40 border border-clay/30 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-terracotta/30 focus:border-terracotta focus:bg-white text-earth transition-all"
                   />
                   <select
                     value={formState.state}
                     onChange={(e) => setFormState({ ...formState, state: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-clay-50 border border-clay-300 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-terracotta-500 focus:bg-white text-earth-900 font-medium"
+                    className="w-full px-4 py-3 rounded-xl bg-sand/40 border border-clay/30 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-terracotta/30 focus:border-terracotta focus:bg-white text-earth font-medium transition-all"
                   >
                     <option value="Bangalore">Bangalore</option>
                     <option value="Other Karnataka">Other Karnataka</option>
@@ -337,22 +337,22 @@ export const CatalogueDetailPage: React.FC = () => {
                     placeholder="Plot size (e.g. 30x40, 40x60) or specific requirement..."
                     value={formState.message}
                     onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-clay-50 border border-clay-300 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-terracotta-500 focus:bg-white text-earth-900"
+                    className="w-full px-4 py-3 rounded-xl bg-sand/40 border border-clay/30 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-terracotta/30 focus:border-terracotta focus:bg-white text-earth transition-all"
                   />
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-2.5 pt-2">
                   <button
                     type="submit"
-                    className="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="btn-primary w-full py-3.5 flex items-center justify-center gap-2 text-xs sm:text-sm font-bold shadow-md cursor-pointer"
                   >
-                    <MessageSquare className="w-4 h-4 fill-white" />
+                    <MessageSquare className="w-4 h-4 fill-cream" />
                     <span>Send via WhatsApp</span>
                   </button>
 
                   <a
                     href={mailtoHref}
-                    className="w-full py-2.5 px-4 rounded-xl bg-clay-100 hover:bg-clay-200 text-earth-800 font-semibold text-xs transition-all flex items-center justify-center gap-2"
+                    className="btn-outline w-full py-2.5 flex items-center justify-center gap-2 text-xs font-bold text-center"
                   >
                     <Mail className="w-3.5 h-3.5" />
                     <span>Or Send via Email</span>

@@ -27,7 +27,7 @@ export const LiteYouTube: React.FC<LiteYouTubeProps> = ({
 
   if (!videoId) {
     return (
-      <div className={`w-full ${aspectClass} bg-clay-200 rounded-xl flex items-center justify-center p-4 text-earth-600 text-sm ${className}`}>
+      <div className={`w-full ${aspectClass} bg-sand rounded-2xl flex items-center justify-center p-4 text-earth/60 text-sm border border-clay/20 ${className}`}>
         <span>Video unavailable</span>
       </div>
     );
@@ -40,7 +40,7 @@ export const LiteYouTube: React.FC<LiteYouTubeProps> = ({
 
   return (
     <div
-      className={`relative w-full overflow-hidden rounded-2xl bg-earth-900 shadow-md transition-all duration-300 group border border-clay-200 ${aspectClass} ${className}`}
+      className={`relative w-full overflow-hidden rounded-2xl bg-earth shadow-md transition-all duration-300 group border border-clay/20 ${aspectClass} ${className}`}
     >
       {isPlaying ? (
         <iframe
@@ -55,7 +55,7 @@ export const LiteYouTube: React.FC<LiteYouTubeProps> = ({
         <button
           type="button"
           onClick={() => setIsPlaying(true)}
-          className="relative w-full h-full text-left cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-terracotta-500 overflow-hidden"
+          className="relative w-full h-full text-left cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-terracotta/40 overflow-hidden"
           aria-label={`Play video: ${title}`}
         >
           {/* Background YouTube Thumbnail */}
@@ -68,21 +68,21 @@ export const LiteYouTube: React.FC<LiteYouTubeProps> = ({
           />
 
           {/* Vignette Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-earth-900/90 via-earth-900/40 to-transparent transition-opacity group-hover:opacity-90" />
+          <div className="absolute inset-0 bg-gradient-to-t from-earth/90 via-earth/40 to-transparent transition-opacity group-hover:opacity-90" />
 
           {/* Centered Play Button */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-full bg-terracotta-600 text-white flex items-center justify-center shadow-2xl transition-all duration-300 transform group-hover:scale-115 group-hover:bg-terracotta-500 ring-4 ring-white/30">
-              <Play className="w-7 h-7 sm:w-8 sm:h-8 ml-1 fill-white" />
+            <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-full bg-terracotta text-cream flex items-center justify-center shadow-2xl transition-all duration-300 transform group-hover:scale-110 group-hover:bg-terracotta-dark ring-4 ring-cream/30">
+              <Play className="w-7 h-7 sm:w-8 sm:h-8 ml-1 fill-cream" />
             </div>
           </div>
 
           {/* Bottom Title Bar */}
-          <div className="absolute bottom-0 inset-x-0 p-4 sm:p-5 text-white">
-            <span className="inline-block text-[11px] font-bold uppercase tracking-wider bg-terracotta-700/80 px-2 py-0.5 rounded text-terracotta-100 mb-1.5 backdrop-blur-sm">
-              VEBCO Construction Reel
+          <div className="absolute bottom-0 inset-x-0 p-4 sm:p-5 text-cream">
+            <span className="inline-block text-[10px] font-bold uppercase tracking-widest bg-terracotta/90 px-2.5 py-0.5 rounded-full text-cream mb-1.5 backdrop-blur-sm">
+              Construction Reel
             </span>
-            <p className="text-sm sm:text-base font-semibold line-clamp-2 drop-shadow-sm group-hover:text-terracotta-200 transition-colors">
+            <p className="font-serif text-sm sm:text-base font-semibold line-clamp-2 drop-shadow-sm group-hover:text-terracotta-light transition-colors leading-snug">
               {title}
             </p>
           </div>

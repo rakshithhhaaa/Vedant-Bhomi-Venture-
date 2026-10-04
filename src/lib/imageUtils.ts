@@ -75,19 +75,10 @@ export async function compressImageToWebP(
 }
 
 /**
- * Formats price in Indian Rupee format or returns "Contact for price"
+ * Formats price - Returns "Contact for price" per pricing display requirements
  */
-export function formatPrice(price: number | null | undefined, unit = 'per sq ft'): string {
-  if (price === null || price === undefined || price <= 0) {
-    return 'Contact for price';
-  }
-  const formatted = new Intl.NumberFormat('en-IN', {
-    style: 'currency',
-    currency: 'INR',
-    maximumFractionDigits: 0,
-  }).format(price);
-
-  return unit ? `${formatted} / ${unit}` : formatted;
+export function formatPrice(_price?: number | null, _unit?: string): string {
+  return 'Contact for price';
 }
 
 /**

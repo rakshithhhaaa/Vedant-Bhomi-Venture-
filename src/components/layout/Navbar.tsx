@@ -48,37 +48,37 @@ export const Navbar: React.FC = () => {
     <header
       className={`sticky top-0 z-40 transition-all duration-300 ${
         scrolled
-          ? 'bg-clay-50/95 backdrop-blur-md shadow-sm border-b border-clay-200 py-3'
-          : 'bg-clay-50/80 backdrop-blur-sm border-b border-clay-200/60 py-4'
+          ? 'bg-cream/95 backdrop-blur-md shadow-[0_4px_20px_-4px_rgba(43,29,20,0.06)] border-b border-[#E8DFC8] py-3'
+          : 'bg-cream/80 backdrop-blur-sm border-b border-[#E8DFC8]/60 py-4'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo & Brand */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-terracotta-600 flex items-center justify-center text-white shadow-md shadow-terracotta-900/10 group-hover:bg-terracotta-700 transition-colors">
-              <Layers className="w-6 h-6" />
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-terracotta flex items-center justify-center text-white shadow-sm group-hover:bg-terracotta-700 transition-colors">
+              <Layers className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.8} />
             </div>
             <div>
-              <span className="block font-serif text-lg sm:text-xl font-bold tracking-tight text-earth-900 group-hover:text-terracotta-700 transition-colors">
+              <span className="block font-serif text-lg sm:text-xl font-bold tracking-tight text-earth group-hover:text-terracotta transition-colors">
                 {settings.companyName || 'Vedant Bhomi Venture'}
               </span>
-              <span className="block text-[11px] font-medium tracking-wider uppercase text-forest-700">
-                {settings.brandName || 'Vedaanth ECO Buildcon (VEBCO)'} • {settings.tagline || 'Eco Friendly Construction'}
+              <span className="block text-[11px] font-medium tracking-wider uppercase text-clay">
+                {settings.brandName || 'Vedaanth ECO Buildcon (VEBCO)'}
               </span>
             </div>
           </Link>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+          <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-all ${
+                className={`px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
                   isActive(link.path)
-                    ? 'text-terracotta-700 bg-terracotta-50 font-semibold'
-                    : 'text-earth-700 hover:text-terracotta-600 hover:bg-clay-100/80'
+                    ? 'text-terracotta bg-terracotta/10 font-semibold'
+                    : 'text-earth/80 hover:text-terracotta hover:bg-black/[0.03]'
                 }`}
               >
                 {link.name}
@@ -90,10 +90,10 @@ export const Navbar: React.FC = () => {
           <div className="hidden md:flex items-center gap-3">
             <a
               href={`tel:${settings.phone.replace(/[^0-9+]/g, '')}`}
-              className="flex items-center gap-2 text-xs font-semibold text-earth-700 hover:text-terracotta-600 px-3 py-2 rounded-lg border border-clay-300 hover:border-terracotta-300 transition-colors"
+              className="flex items-center gap-2 text-xs font-semibold text-earth hover:text-terracotta px-3.5 py-2.5 rounded-xl border border-earth/15 hover:border-terracotta/40 bg-white/50 hover:bg-white transition-all duration-200"
               title={`Call ${settings.companyName || 'Vedant Bhomi Venture'}`}
             >
-              <Phone className="w-3.5 h-3.5 text-forest-600" />
+              <Phone className="w-3.5 h-3.5 text-forest" />
               <span>{settings.phone}</span>
             </a>
 
@@ -101,7 +101,7 @@ export const Navbar: React.FC = () => {
               href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-xs font-semibold bg-forest-600 hover:bg-forest-700 text-white px-4 py-2.5 rounded-lg shadow-sm hover:shadow transition-all"
+              className="flex items-center gap-2 text-xs font-semibold bg-forest hover:bg-forest-700 text-white px-4 py-2.5 rounded-xl shadow-sm hover:shadow transition-all duration-200"
             >
               <MessageSquare className="w-3.5 h-3.5" />
               <span>WhatsApp Us</span>
@@ -111,7 +111,7 @@ export const Navbar: React.FC = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-lg text-earth-700 hover:bg-clay-200 transition-colors focus:outline-none focus:ring-2 focus:ring-terracotta-400"
+            className="lg:hidden p-2.5 rounded-xl text-earth hover:bg-black/[0.04] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta"
             aria-label={isOpen ? 'Close Menu' : 'Open Menu'}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -121,16 +121,16 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Menu Drawer */}
       {isOpen && (
-        <div className="lg:hidden bg-clay-50 border-b border-clay-200 px-4 pt-3 pb-6 space-y-2 animate-in slide-in-from-top-2 duration-200">
+        <div className="lg:hidden bg-cream border-b border-[#E8DFC8] px-4 pt-3 pb-6 space-y-3 animate-fade-rise">
           <div className="space-y-1">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`block px-4 py-2.5 rounded-lg text-base font-medium ${
+                className={`block px-4 py-3 rounded-xl text-base font-medium transition-colors ${
                   isActive(link.path)
-                    ? 'text-terracotta-700 bg-terracotta-50 font-semibold'
-                    : 'text-earth-800 hover:bg-clay-100'
+                    ? 'text-terracotta bg-terracotta/10 font-semibold'
+                    : 'text-earth hover:bg-black/[0.03]'
                 }`}
               >
                 {link.name}
@@ -138,19 +138,19 @@ export const Navbar: React.FC = () => {
             ))}
           </div>
 
-          <div className="pt-4 border-t border-clay-200 grid grid-cols-2 gap-2">
+          <div className="pt-3 border-t border-[#E8DFC8] grid grid-cols-2 gap-2">
             <a
               href={`tel:${settings.phone.replace(/[^0-9+]/g, '')}`}
-              className="flex items-center justify-center gap-2 py-2.5 text-sm font-semibold rounded-lg bg-clay-200 text-earth-800 hover:bg-clay-300"
+              className="flex items-center justify-center gap-2 py-3 text-sm font-semibold rounded-xl bg-white border border-[#E8DFC8] text-earth hover:bg-cream-200 transition-colors"
             >
-              <Phone className="w-4 h-4 text-forest-600" />
+              <Phone className="w-4 h-4 text-forest" />
               <span>Call Us</span>
             </a>
             <a
               href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 py-2.5 text-sm font-semibold rounded-lg bg-forest-600 text-white hover:bg-forest-700"
+              className="flex items-center justify-center gap-2 py-3 text-sm font-semibold rounded-xl bg-forest text-white hover:bg-forest-700 transition-colors"
             >
               <MessageSquare className="w-4 h-4" />
               <span>WhatsApp</span>

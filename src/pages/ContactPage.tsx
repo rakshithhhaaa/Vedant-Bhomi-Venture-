@@ -81,48 +81,48 @@ export const ContactPage: React.FC = () => {
   )}`;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 space-y-12">
       <SEO
-        title={`Contact Us & Location | ${settings.companyName || 'Vedant Bhomi Venture'} (${settings.brandName || 'VEBCO'})`}
+        title={`Contact Us & Head Office | ${settings.companyName || 'Vedant Bhomi Venture'} (${settings.brandName || 'VEBCO'})`}
         description={`Contact ${settings.companyName || 'Vedant Bhomi Venture'} (${settings.brandName || 'VEBCO'}). Head office at Bommasandra Jigani Link Rd, Jigani, Karnataka. ${formatServiceAreas(settings.serviceAreas)}.`}
       />
 
       {/* Header Banner */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-terracotta-100 text-terracotta-800 text-xs font-bold uppercase tracking-wider">
+        <span className="section-label">
           <MessageSquare className="w-3.5 h-3.5" />
           Get In Touch
         </span>
-        <h1 className="font-serif text-3xl sm:text-5xl font-extrabold text-earth-900 tracking-tight">
+        <h1 className="section-title">
           Let’s Build Something Sustainable
         </h1>
-        <p className="text-sm sm:text-base text-earth-700 leading-relaxed">
+        <p className="section-subtitle">
           {settings.companyName || 'Vedant Bhomi Venture'} (also known as {settings.brandName || 'Vedaanth ECO Buildcon / VEBCO'}) executes turnkey CSEB villas, resort cottages, traditional courtyard houses, and interlocking brick supply.
         </p>
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-forest-50 border border-forest-200 text-forest-800 text-xs font-semibold">
-          <Compass className="w-4 h-4 text-forest-600 shrink-0" />
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-forest/10 border border-forest/20 text-forest text-xs font-semibold">
+          <Compass className="w-4 h-4 text-forest shrink-0" />
           <span>{formatServiceAreas(settings.serviceAreas)}</span>
         </div>
       </div>
 
-      {/* Regional Service Area Strip (NEW SECTION) */}
-      <div className="rounded-3xl bg-clay-100/70 border border-clay-200 p-6 sm:p-8">
+      {/* Regional Service Area Strip */}
+      <div className="card-earthen p-6 sm:p-8 bg-sand/50 border border-clay/30">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-1 text-center md:text-left">
-            <h3 className="text-base font-bold text-earth-900 flex items-center justify-center md:justify-start gap-2">
-              <Map className="w-5 h-5 text-terracotta-600" />
+            <h3 className="font-serif text-base font-bold text-earth flex items-center justify-center md:justify-start gap-2">
+              <Map className="w-5 h-5 text-terracotta" />
               <span>We Build Across {formatBuildAcross(settings.serviceAreas)}</span>
             </h3>
-            <p className="text-xs text-earth-600">
+            <p className="text-xs text-earth/70">
               Head office at Jigani, Karnataka with active turnkey construction operations and material dispatch across Bangalore, Karnataka, Tamil Nadu, and Andhra Pradesh.
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-2 text-xs font-bold text-forest-800">
-            <span className="px-3 py-1 rounded-lg bg-white border border-clay-200 shadow-2xl shadow-clay-200">Bangalore</span>
-            <span className="px-3 py-1 rounded-lg bg-white border border-clay-200 shadow-2xl shadow-clay-200">Karnataka</span>
-            <span className="px-3 py-1 rounded-lg bg-white border border-clay-200 shadow-2xl shadow-clay-200">Tamil Nadu</span>
-            <span className="px-3 py-1 rounded-lg bg-white border border-clay-200 shadow-2xl shadow-clay-200">Andhra Pradesh</span>
+          <div className="flex flex-wrap items-center justify-center gap-2 text-xs font-bold text-forest">
+            <span className="px-3.5 py-1.5 rounded-full bg-cream border border-clay/20 shadow-sm">Bangalore</span>
+            <span className="px-3.5 py-1.5 rounded-full bg-cream border border-clay/20 shadow-sm">Karnataka</span>
+            <span className="px-3.5 py-1.5 rounded-full bg-cream border border-clay/20 shadow-sm">Tamil Nadu</span>
+            <span className="px-3.5 py-1.5 rounded-full bg-cream border border-clay/20 shadow-sm">Andhra Pradesh</span>
           </div>
         </div>
       </div>
@@ -131,31 +131,31 @@ export const ContactPage: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
         {/* Left: Contact Details Cards */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-clay-200 shadow-sm space-y-6">
-            <h2 className="font-serif text-xl font-bold text-earth-900 border-b border-clay-100 pb-3">
+          <div className="card-earthen p-6 sm:p-8 space-y-6">
+            <h2 className="font-serif text-xl font-bold text-earth border-b border-clay/20 pb-3">
               Head Office & Channels
             </h2>
 
-            <ul className="space-y-5 text-sm text-earth-700">
+            <ul className="space-y-5 text-sm text-earth/80">
               <li className="flex items-start gap-3.5">
-                <div className="w-10 h-10 rounded-xl bg-terracotta-50 text-terracotta-700 flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-terracotta/10 text-terracotta flex items-center justify-center shrink-0">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="block font-bold text-earth-900">Head Office Location</span>
-                  <span className="text-earth-600 text-xs sm:text-sm">{settings.address}</span>
+                  <span className="block font-bold text-earth">Head Office Location</span>
+                  <span className="text-earth/70 text-xs sm:text-sm">{settings.address}</span>
                 </div>
               </li>
 
               <li className="flex items-start gap-3.5">
-                <div className="w-10 h-10 rounded-xl bg-forest-50 text-forest-700 flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-forest/10 text-forest flex items-center justify-center shrink-0">
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="block font-bold text-earth-900">Direct Phone / Call</span>
+                  <span className="block font-bold text-earth">Direct Phone / Call</span>
                   <a
                     href={`tel:${settings.phone.replace(/[^0-9+]/g, '')}`}
-                    className="text-terracotta-700 font-semibold hover:underline"
+                    className="text-terracotta font-semibold hover:underline"
                   >
                     {settings.phone}
                   </a>
@@ -163,16 +163,16 @@ export const ContactPage: React.FC = () => {
               </li>
 
               <li className="flex items-start gap-3.5">
-                <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-forest/15 text-forest flex items-center justify-center shrink-0">
                   <MessageSquare className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="block font-bold text-earth-900">WhatsApp Chat</span>
+                  <span className="block font-bold text-earth">WhatsApp Chat</span>
                   <a
                     href={directWhatsappHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-emerald-700 font-semibold hover:underline flex items-center gap-1"
+                    className="text-forest font-semibold hover:underline flex items-center gap-1"
                   >
                     <span>{settings.whatsapp_number}</span>
                     <ExternalLink className="w-3.5 h-3.5" />
@@ -181,21 +181,21 @@ export const ContactPage: React.FC = () => {
               </li>
 
               <li className="flex items-start gap-3.5">
-                <div className="w-10 h-10 rounded-xl bg-clay-100 text-earth-700 flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-sand text-earth flex items-center justify-center shrink-0 border border-clay/20">
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="block font-bold text-earth-900">Email Addresses</span>
+                  <span className="block font-bold text-earth">Email Addresses</span>
                   <a
                     href={`mailto:${settings.email_primary}`}
-                    className="block text-xs sm:text-sm text-terracotta-700 hover:underline"
+                    className="block text-xs sm:text-sm text-terracotta hover:underline"
                   >
                     {settings.email_primary}
                   </a>
                   {settings.email_secondary && (
                     <a
                       href={`mailto:${settings.email_secondary}`}
-                      className="block text-xs text-earth-600 hover:underline"
+                      className="block text-xs text-earth/70 hover:underline"
                     >
                       {settings.email_secondary}
                     </a>
@@ -204,12 +204,12 @@ export const ContactPage: React.FC = () => {
               </li>
 
               <li className="flex items-start gap-3.5">
-                <div className="w-10 h-10 rounded-xl bg-sand-100 text-sand-800 flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-sand text-earth flex items-center justify-center shrink-0 border border-clay/20">
                   <Clock className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="block font-bold text-earth-900">Operating Hours</span>
-                  <span className="text-forest-700 font-semibold text-xs sm:text-sm">
+                  <span className="block font-bold text-earth">Operating Hours</span>
+                  <span className="text-forest font-semibold text-xs sm:text-sm">
                     {settings.hours}
                   </span>
                 </div>
@@ -217,7 +217,7 @@ export const ContactPage: React.FC = () => {
             </ul>
 
             {/* Direct Channel & Catalogue Links */}
-            <div className="pt-4 border-t border-clay-100 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="pt-4 border-t border-clay/20 grid grid-cols-1 sm:grid-cols-2 gap-3">
               <a
                 href={settings.youtube_url}
                 target="_blank"
@@ -232,7 +232,7 @@ export const ContactPage: React.FC = () => {
                 href={settings.whatsapp_catalogue_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 p-3 rounded-xl bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-xs font-bold transition-colors border border-emerald-200"
+                className="flex items-center justify-center gap-2 p-3 rounded-xl bg-forest/10 text-forest hover:bg-forest/20 text-xs font-bold transition-colors border border-forest/20"
               >
                 <MessageSquare className="w-4 h-4" />
                 <span>WA Catalogue</span>
@@ -243,12 +243,12 @@ export const ContactPage: React.FC = () => {
 
         {/* Right: Interactive Enquiry Form */}
         <div className="lg:col-span-7">
-          <div className="bg-white rounded-3xl p-6 sm:p-10 border border-clay-200 shadow-sm space-y-6">
+          <div className="card-earthen p-6 sm:p-10 space-y-6">
             <div className="space-y-1">
-              <h2 className="font-serif text-2xl font-bold text-earth-900">
+              <h2 className="font-serif text-2xl font-bold text-earth">
                 Send a Project Enquiry
               </h2>
-              <p className="text-xs sm:text-sm text-earth-600">
+              <p className="text-xs sm:text-sm text-earth/70">
                 Fill in your location and requirements to chat directly with our civil engineers on WhatsApp.
               </p>
             </div>
@@ -274,7 +274,7 @@ export const ContactPage: React.FC = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-earth-800 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-earth uppercase tracking-wider mb-1.5">
                     Your Full Name *
                   </label>
                   <input
@@ -283,12 +283,12 @@ export const ContactPage: React.FC = () => {
                     placeholder="e.g. Anand Kumar"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-clay-50 border border-clay-300 text-sm focus:outline-none focus:ring-2 focus:ring-terracotta-500 focus:bg-white text-earth-900"
+                    className="w-full px-4 py-3 rounded-xl bg-sand/40 border border-clay/30 text-sm focus:outline-none focus:ring-2 focus:ring-terracotta/30 focus:border-terracotta focus:bg-white text-earth transition-all"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-earth-800 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-earth uppercase tracking-wider mb-1.5">
                     Phone / WhatsApp *
                   </label>
                   <input
@@ -297,14 +297,14 @@ export const ContactPage: React.FC = () => {
                     placeholder="+91 9876543210"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-clay-50 border border-clay-300 text-sm focus:outline-none focus:ring-2 focus:ring-terracotta-500 focus:bg-white text-earth-900"
+                    className="w-full px-4 py-3 rounded-xl bg-sand/40 border border-clay/30 text-sm focus:outline-none focus:ring-2 focus:ring-terracotta/30 focus:border-terracotta focus:bg-white text-earth transition-all"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-earth-800 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-earth uppercase tracking-wider mb-1.5">
                     Your City / Location *
                   </label>
                   <input
@@ -313,18 +313,18 @@ export const ContactPage: React.FC = () => {
                     placeholder="e.g. Hosur, Bangalore, Mysore, Chennai"
                     value={formData.location_city}
                     onChange={(e) => setFormData({ ...formData, location_city: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-clay-50 border border-clay-300 text-sm focus:outline-none focus:ring-2 focus:ring-terracotta-500 focus:bg-white text-earth-900"
+                    className="w-full px-4 py-3 rounded-xl bg-sand/40 border border-clay/30 text-sm focus:outline-none focus:ring-2 focus:ring-terracotta/30 focus:border-terracotta focus:bg-white text-earth transition-all"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-earth-800 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-earth uppercase tracking-wider mb-1.5">
                     State / Region *
                   </label>
                   <select
                     value={formData.state}
                     onChange={(e) => setFormData({ ...formData, state: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-clay-50 border border-clay-300 text-sm focus:outline-none focus:ring-2 focus:ring-terracotta-500 focus:bg-white text-earth-900 font-medium"
+                    className="w-full px-4 py-3 rounded-xl bg-sand/40 border border-clay/30 text-sm focus:outline-none focus:ring-2 focus:ring-terracotta/30 focus:border-terracotta focus:bg-white text-earth font-medium transition-all"
                   >
                     <option value="Bangalore">Bangalore</option>
                     <option value="Other Karnataka">Other Karnataka</option>
@@ -337,7 +337,7 @@ export const ContactPage: React.FC = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-earth-800 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-earth uppercase tracking-wider mb-1.5">
                     Email Address (Optional)
                   </label>
                   <input
@@ -345,18 +345,18 @@ export const ContactPage: React.FC = () => {
                     placeholder="anand@example.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-clay-50 border border-clay-300 text-sm focus:outline-none focus:ring-2 focus:ring-terracotta-500 focus:bg-white text-earth-900"
+                    className="w-full px-4 py-3 rounded-xl bg-sand/40 border border-clay/30 text-sm focus:outline-none focus:ring-2 focus:ring-terracotta/30 focus:border-terracotta focus:bg-white text-earth transition-all"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-earth-800 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-earth uppercase tracking-wider mb-1.5">
                     Project Type
                   </label>
                   <select
                     value={formData.project_type}
                     onChange={(e) => setFormData({ ...formData, project_type: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-clay-50 border border-clay-300 text-sm focus:outline-none focus:ring-2 focus:ring-terracotta-500 focus:bg-white text-earth-900"
+                    className="w-full px-4 py-3 rounded-xl bg-sand/40 border border-clay/30 text-sm focus:outline-none focus:ring-2 focus:ring-terracotta/30 focus:border-terracotta focus:bg-white text-earth transition-all"
                   >
                     <option value="Residential House">Residential House (CSEB)</option>
                     <option value="Budget House">Budget Interlocking House</option>
@@ -373,7 +373,7 @@ export const ContactPage: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-earth-800 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-earth uppercase tracking-wider mb-1.5">
                   Project Details & Requirements (Optional)
                 </label>
                 <textarea
@@ -381,22 +381,22 @@ export const ContactPage: React.FC = () => {
                   placeholder="Plot size (e.g. 30x40, 40x60), site topography, preferred start timeline..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-clay-50 border border-clay-300 text-sm focus:outline-none focus:ring-2 focus:ring-terracotta-500 focus:bg-white text-earth-900"
+                  className="w-full px-4 py-3 rounded-xl bg-sand/40 border border-clay/30 text-sm focus:outline-none focus:ring-2 focus:ring-terracotta/30 focus:border-terracotta focus:bg-white text-earth transition-all"
                 />
               </div>
 
               <div className="space-y-3 pt-2">
                 <button
                   type="submit"
-                  className="w-full py-4 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm sm:text-base shadow-lg shadow-emerald-700/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  className="btn-primary w-full py-4 px-6 rounded-xl text-sm sm:text-base font-bold shadow-lg flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <MessageSquare className="w-5 h-5 fill-white" />
+                  <MessageSquare className="w-5 h-5 fill-cream" />
                   <span>Send Enquiry via WhatsApp</span>
                 </button>
 
                 <a
                   href={mailtoHref}
-                  className="w-full py-3 px-6 rounded-xl bg-clay-100 hover:bg-clay-200 text-earth-800 font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 text-center"
+                  className="btn-outline w-full py-3 px-6 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 text-center"
                 >
                   <Mail className="w-4 h-4" />
                   <span>Send Enquiry via Email</span>
@@ -408,13 +408,13 @@ export const ContactPage: React.FC = () => {
       </div>
 
       {/* Google Maps Location Embed */}
-      <section className="bg-white rounded-3xl p-4 sm:p-6 border border-clay-200 shadow-sm space-y-4">
+      <section className="card-earthen p-4 sm:p-6 space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-2">
           <div>
-            <h3 className="font-serif text-lg font-bold text-earth-900">
+            <h3 className="font-serif text-lg font-bold text-earth">
               Head Office Location Map
             </h3>
-            <p className="text-xs text-earth-600">
+            <p className="text-xs text-earth/70">
               Bommasandra Jigani Link Rd, Jigani, Karnataka 560105
             </p>
           </div>
@@ -422,14 +422,14 @@ export const ContactPage: React.FC = () => {
             href="https://maps.google.com/?q=Bommasandra+Jigani+Link+Rd,+Jigani,+Karnataka+560105"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-terracotta-700 hover:underline"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-terracotta hover:underline"
           >
             <span>Open in Google Maps</span>
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
         </div>
 
-        <div className="h-80 sm:h-96 w-full rounded-2xl overflow-hidden border border-clay-200">
+        <div className="h-80 sm:h-96 w-full rounded-2xl overflow-hidden border border-clay/20 shadow-inner">
           <iframe
             title="VEBCO Location Map"
             src="https://maps.google.com/maps?q=Bommasandra%20Jigani%20Link%20Rd%2C%20Jigani%2C%20Karnataka%20560105&t=&z=13&ie=UTF8&iwloc=&output=embed"

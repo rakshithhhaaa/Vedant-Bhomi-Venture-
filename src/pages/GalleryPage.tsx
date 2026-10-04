@@ -26,7 +26,7 @@ export const GalleryPage: React.FC = () => {
   }, [images, selectedCategory]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 space-y-12">
       <SEO
         title={`Project Gallery | ${settings.companyName || 'Vedant Bhomi Venture'} (${settings.brandName || 'VEBCO'})`}
         description={`Browse real completed CSEB and interlocking mud brick institutional, residential, resort, and commercial project photographs by ${settings.companyName || 'Vedant Bhomi Venture'} in Bangalore and across Karnataka, Tamil Nadu, and Andhra Pradesh.`}
@@ -34,39 +34,39 @@ export const GalleryPage: React.FC = () => {
 
       {/* Header Banner */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-forest-100 text-forest-800 text-xs font-bold uppercase tracking-wider">
+        <span className="section-label">
           <Camera className="w-3.5 h-3.5" />
           Real Site Photography
         </span>
-        <h1 className="font-serif text-3xl sm:text-5xl font-extrabold text-earth-900 tracking-tight">
-          Completed Projects Gallery
+        <h1 className="section-title">
+          Completed Architectural Gallery
         </h1>
-        <p className="text-sm sm:text-base text-earth-700 leading-relaxed">
-          Explore genuine photography of our CSEB mud brick villas, exposed brick cottages, filler slab ceilings, and sustainable commercial architecture.
+        <p className="section-subtitle">
+          Explore genuine photography of our CSEB mud brick villas, exposed brick cottages, filler slab ceilings, and sustainable institutional architecture.
         </p>
       </div>
 
       {images.length === 0 ? (
-        /* Zero Images Empty State (Strict Image Rule: Clean, informative, no broken boxes) */
-        <div className="max-w-3xl mx-auto rounded-3xl bg-white border border-clay-200 p-8 sm:p-12 text-center shadow-sm space-y-6">
-          <div className="w-16 h-16 rounded-2xl bg-clay-100 text-terracotta-600 flex items-center justify-center mx-auto shadow-inner">
+        /* Zero Images Empty State */
+        <div className="max-w-3xl mx-auto rounded-3xl card-earthen p-8 sm:p-12 text-center space-y-6">
+          <div className="w-16 h-16 rounded-2xl bg-sand text-terracotta flex items-center justify-center mx-auto shadow-inner border border-clay/20">
             <Camera className="w-8 h-8" strokeWidth={1.5} />
           </div>
 
           <div className="space-y-2">
-            <h3 className="text-xl font-bold text-earth-900">
+            <h3 className="font-serif text-xl font-bold text-earth">
               Real Project Photos Being Synchronized
             </h3>
-            <p className="text-sm text-earth-600 max-w-lg mx-auto leading-relaxed">
-              We only display authentic, un-doctored photographs of our genuine on-site construction in Bangalore and South India. New high-resolution site photos will appear here as uploaded.
+            <p className="text-sm text-earth/70 max-w-lg mx-auto leading-relaxed">
+              We only display authentic, un-doctored photographs of our genuine on-site construction across Karnataka, Tamil Nadu, and Andhra Pradesh. New high-resolution site photos will appear here as uploaded.
             </p>
           </div>
 
-          <div className="p-4 rounded-2xl bg-clay-50 border border-clay-200/80 text-xs text-earth-700 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <span className="font-semibold text-terracotta-700">In the meantime, explore our live video records:</span>
+          <div className="p-4 rounded-2xl bg-sand/60 border border-clay/20 text-xs text-earth/80 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <span className="font-semibold text-terracotta">In the meantime, explore our live video records:</span>
             <Link
               to="/videos"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-terracotta-600 hover:bg-terracotta-700 text-white font-bold transition-colors"
+              className="btn-primary inline-flex items-center gap-1.5 py-2 px-4 text-xs"
             >
               <Youtube className="w-4 h-4" />
               <span>Watch Video Walkthroughs</span>
@@ -78,7 +78,7 @@ export const GalleryPage: React.FC = () => {
               href={settings.whatsapp_catalogue_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-xs font-bold text-forest-700 hover:underline"
+              className="inline-flex items-center gap-2 text-xs font-bold text-forest hover:underline"
             >
               <MessageSquare className="w-4 h-4" />
               <span>Or browse the official WhatsApp Photo Catalogue</span>
@@ -89,15 +89,15 @@ export const GalleryPage: React.FC = () => {
         /* Image Grid with Filter */
         <div className="space-y-8">
           <div className="flex items-center justify-center gap-2 overflow-x-auto pb-2 scrollbar-thin">
-            <Filter className="w-4 h-4 text-earth-500 mr-1 shrink-0" />
+            <Filter className="w-4 h-4 text-earth/50 mr-1 shrink-0" />
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
+                className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
                   selectedCategory === cat
-                    ? 'bg-terracotta-600 text-white shadow-sm'
-                    : 'bg-clay-100 text-earth-700 hover:bg-clay-200'
+                    ? 'bg-terracotta text-cream shadow-sm'
+                    : 'bg-white/80 text-earth/80 hover:bg-white hover:text-earth border border-clay/20'
                 }`}
               >
                 {cat}
@@ -105,25 +105,25 @@ export const GalleryPage: React.FC = () => {
             ))}
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredImages.map((img, idx) => (
               <div
                 key={img.id}
                 onClick={() => setLightboxIndex(idx)}
-                className="group relative overflow-hidden rounded-2xl bg-clay-100 border border-clay-200 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer h-72"
+                className="group relative overflow-hidden aspect-[4/3] rounded-2xl bg-sand border border-clay/20 shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer"
               >
                 <img
                   src={img.image_url}
-                  alt={img.caption || 'VEBCO Project'}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  alt={img.caption || 'Project photo'}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-earth-900/80 via-earth-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-white">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-terracotta-300">
+                <div className="absolute inset-0 bg-gradient-to-t from-earth/90 via-earth/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-5 flex flex-col justify-end text-cream">
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-clay">
                     {img.category}
                   </span>
                   {img.caption && (
-                    <p className="text-sm font-semibold mt-0.5 line-clamp-2">{img.caption}</p>
+                    <p className="text-sm font-semibold mt-1 line-clamp-2 leading-snug">{img.caption}</p>
                   )}
                 </div>
               </div>

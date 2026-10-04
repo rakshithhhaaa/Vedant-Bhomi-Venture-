@@ -44,18 +44,18 @@ export const Lightbox: React.FC<LightboxProps> = ({
   const current = images[currentIndex] || images[0];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-earth-900/95 backdrop-blur-md p-4 sm:p-6 transition-all duration-300">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-earth/95 backdrop-blur-md p-4 sm:p-6 transition-all duration-300">
       {/* Top Header / Actions */}
-      <div className="absolute top-4 inset-x-4 sm:inset-x-8 flex items-center justify-between z-10 text-white">
-        <span className="text-sm font-medium tracking-wide text-clay-300">
+      <div className="absolute top-4 inset-x-4 sm:inset-x-8 flex items-center justify-between z-10 text-cream">
+        <span className="text-sm font-medium tracking-wide text-clay">
           {currentIndex + 1} / {images.length}
         </span>
         <button
           onClick={onClose}
-          className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors focus:outline-none focus:ring-2 focus:ring-terracotta-400"
+          className="p-2.5 rounded-full bg-white/10 hover:bg-terracotta text-cream transition-colors focus:outline-none focus:ring-2 focus:ring-terracotta cursor-pointer"
           aria-label="Close image lightbox"
         >
-          <X className="w-6 h-6" />
+          <X className="w-5 h-5" />
         </button>
       </div>
 
@@ -64,11 +64,11 @@ export const Lightbox: React.FC<LightboxProps> = ({
         <img
           src={current.url}
           alt={current.caption || current.title || 'Project photo'}
-          className="max-h-[75vh] max-w-full object-contain rounded-lg shadow-2xl transition-all duration-300"
+          className="max-h-[75vh] max-w-full object-contain rounded-2xl shadow-2xl transition-all duration-300 border border-clay/20"
         />
 
         {(current.caption || current.title) && (
-          <div className="mt-3 text-center text-clay-100 text-sm sm:text-base font-medium max-w-2xl px-4 py-1.5 rounded-full bg-earth-800/80 backdrop-blur-sm border border-clay-700">
+          <div className="mt-4 text-center text-cream text-sm sm:text-base font-medium max-w-2xl px-5 py-2 rounded-full bg-earth-800/90 backdrop-blur-md border border-clay/30 shadow-lg">
             {current.caption || current.title}
           </div>
         )}
@@ -79,14 +79,14 @@ export const Lightbox: React.FC<LightboxProps> = ({
         <>
           <button
             onClick={() => onNavigate(currentIndex > 0 ? currentIndex - 1 : images.length - 1)}
-            className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 p-3 rounded-full bg-earth-800/80 hover:bg-terracotta-600 text-white transition-all shadow-lg border border-clay-700 focus:outline-none focus:ring-2 focus:ring-terracotta-400"
+            className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 p-3 rounded-full bg-earth-800/90 hover:bg-terracotta text-cream transition-all shadow-xl border border-clay/30 focus:outline-none focus:ring-2 focus:ring-terracotta cursor-pointer"
             aria-label="Previous image"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
           <button
             onClick={() => onNavigate(currentIndex < images.length - 1 ? currentIndex + 1 : 0)}
-            className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 p-3 rounded-full bg-earth-800/80 hover:bg-terracotta-600 text-white transition-all shadow-lg border border-clay-700 focus:outline-none focus:ring-2 focus:ring-terracotta-400"
+            className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 p-3 rounded-full bg-earth-800/90 hover:bg-terracotta text-cream transition-all shadow-xl border border-clay/30 focus:outline-none focus:ring-2 focus:ring-terracotta cursor-pointer"
             aria-label="Next image"
           >
             <ChevronRight className="w-6 h-6" />

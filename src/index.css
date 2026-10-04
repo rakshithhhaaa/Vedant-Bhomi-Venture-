@@ -2,32 +2,127 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg-cream: #FAF6EF;
+  --color-terracotta: #A8452B;
+  --color-clay: #C9855E;
+  --color-earth: #2B1D14;
+  --color-forest: #3F5B3A;
+  --color-sand: #F3ECE0;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    background-color: #FAF6EF;
   }
 
   body {
-    @apply bg-clay-50 text-earth-800 antialiased min-h-screen flex flex-col;
+    background-color: #FAF6EF;
+    color: #2B1D14;
+    font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+    line-height: 1.7;
+    font-size: 1.0625rem; /* ~17px */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fraunces', 'Playfair Display', Georgia, serif;
+    color: #2B1D14;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  /* Accessible focus indicators */
+  :focus-visible {
+    outline: 2px solid #A8452B;
+    outline-offset: 2px;
   }
 }
 
-/* Custom subtle scrollbar */
+@layer components {
+  /* Editorial section styling */
+  .section-label {
+    @apply inline-block text-xs font-bold uppercase tracking-[0.2em] text-terracotta mb-3;
+  }
+
+  .section-title {
+    @apply font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-earth tracking-tight leading-[1.15];
+  }
+
+  .section-subtitle {
+    @apply text-earth/80 text-base sm:text-lg leading-relaxed max-w-2xl;
+  }
+
+  /* High-end architectural button styles with 44px min touch height */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3.5 min-h-[44px] rounded-xl bg-terracotta text-white font-semibold text-sm sm:text-base shadow-sm hover:bg-terracotta-700 active:scale-[0.98] transition-all duration-200 focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3.5 min-h-[44px] rounded-xl border border-earth/20 hover:border-earth/40 bg-transparent text-earth font-semibold text-sm sm:text-base hover:bg-earth/5 active:scale-[0.98] transition-all duration-200 focus-visible:ring-2 focus-visible:ring-earth focus-visible:ring-offset-2;
+  }
+
+  .btn-glass {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3.5 min-h-[44px] rounded-xl border border-white/30 hover:border-white/60 bg-white/10 hover:bg-white/20 text-white font-semibold text-sm sm:text-base backdrop-blur-md active:scale-[0.98] transition-all duration-200 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2;
+  }
+
+  .btn-forest {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3.5 min-h-[44px] rounded-xl bg-forest text-white font-semibold text-sm sm:text-base shadow-sm hover:bg-forest-700 active:scale-[0.98] transition-all duration-200 focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2;
+  }
+
+  /* Architectural Card with 4:3 Image ratio */
+  .card-earthen {
+    @apply bg-white rounded-2xl sm:rounded-3xl border border-[#E8DFC8]/60 shadow-[0_4px_20px_-4px_rgba(43,29,20,0.05)] hover:shadow-[0_12px_32px_-6px_rgba(43,29,20,0.12)] transition-all duration-300 overflow-hidden flex flex-col;
+  }
+
+  .badge-pill {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wide;
+  }
+}
+
+/* Tasteful subtle animations respecting prefers-reduced-motion */
+@keyframes fadeRise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-rise {
+  animation: fadeRise 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom warm earthen scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f5efe7;
+  background: #FAF6EF;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ceb298;
+  background: #D8C8B5;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #9c4123;
+  background: #A8452B;
 }

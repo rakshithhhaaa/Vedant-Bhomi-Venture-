@@ -6,8 +6,8 @@ interface SEOProps {
 }
 
 export const SEO: React.FC<SEOProps> = ({
-  title = 'Vedaanth ECO Buildcon (VEBCO) | Eco Friendly Construction Bangalore',
-  description = 'Vedaanth ECO Buildcon (VEBCO) specializes in sustainable vernacular architecture, CSEB mud bricks, and interlocking soil compressed bricks in Bangalore. Save 60% cement & sand with fast-track eco construction.',
+  title = 'Vedant Bhomi Venture | Eco Friendly Construction (VEBCO)',
+  description = 'Vedant Bhomi Venture (VEBCO) specializes in sustainable vernacular architecture, CSEB mud bricks, and interlocking soil compressed bricks across Karnataka, Tamil Nadu, and Andhra Pradesh. Saves about 60% of cement and sand with fast-track eco construction.',
 }) => {
   useEffect(() => {
     document.title = title;
